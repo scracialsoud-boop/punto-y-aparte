@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto y Aparte | Tu bienestar también merece un espacio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0f2963',
+                            navyLight: '#1e3a8a',
+                            purple: '#7c3aed',
+                            purpleLight: '#8b5cf6',
+                            cyan: '#06b6d4',
+                            mint: '#14b8a6',
+                            pink: '#ec4899',
+                            bgGradStart: '#f0f4ff',
+                            bgGradEnd: '#fbf7ff'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff 0%, #fbf7ff 50%, #f0fdfa 100%);
+            min-height: 100vh;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #0f2963 0%, #7c3aed 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg-accent {
+            background: linear-gradient(135deg, #06b6d4 0%, #7c3aed 50%, #ec4899 100%);
+        }
+        .star-rating i {
+            transition: all 0.2s ease;
+        }
+        .star-rating i:hover,
+        .star-rating i.active {
+            color: #f59e0b;
+            transform: scale(1.15);
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <!-- Top Emergency/Crisis Banner -->
+    <div class="bg-gradient-to-r from-purple-900 via-indigo-900 to-slate-900 text-white text-xs md:text-sm py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="bg-pink-500 text-white font-bold text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">Orientación Informativa</span>
+                <span class="hidden sm:inline">Plataforma psicoeducativa no clínica para estudiantes.</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-slate-300">¿Necesitas apoyo de urgencia?</span>
+                <button onclick="openCrisisModal()" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-3 py-1 rounded-full text-xs transition flex items-center gap-1 shadow">
+                    <i class="fa-solid fa-phone"></i> Líneas 24/7
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo & Brand Name -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('inicio')">
+                    <!-- SVG Brand Mark faithfully representing provided Logo -->
+                    <svg class="h-12 w-auto" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="logoGradMain" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#0f2963"/>
+                                <stop offset="35%" stop-color="#3b82f6"/>
+                                <stop offset="70%" stop-color="#06b6d4"/>
+                                <stop offset="100%" stop-color="#7c3aed"/>
+                            </linearGradient>
+                            <linearGradient id="logoGradDot" x1="90" y1="60" x2="130" y2="100" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#8b5cf6"/>
+                                <stop offset="100%" stop-color="#3b82f6"/>
+                            </linearGradient>
+                            <linearGradient id="logoGradComma" x1="100" y1="110" x2="140" y2="170" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#ec4899"/>
+                                <stop offset="100%" stop-color="#f43f5e"/>
+                            </linearGradient>
+                            <linearGradient id="ray1" x1="120" y1="20" x2="130" y2="50"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient>
+                            <linearGradient id="ray2" x1="140" y1="30" x2="160" y2="60"><stop offset="0%" stop-color="#14b8a6"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient>
+                            <linearGradient id="ray3" x1="160" y1="50" x2="180" y2="70"><stop offset="0%" stop-color="#f43f5e"/><stop offset="100%" stop-color="#fb7185"/></linearGradient>
+                        </defs>
+                        <!-- P Main Stem Loop -->
+                        <path d="M 60 170 L 60 50 C 60 25, 120 10, 140 45 C 155 70, 135 105, 100 105 L 60 105" stroke="url(#logoGradMain)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <!-- Inner Dot -->
+                        <circle cx="98" cy="68" r="15" fill="url(#logoGradDot)" />
+                        <!-- Semicolon Comma Tail -->
+                        <path d="M 102 110 C 122 110, 130 130, 115 155 C 105 170, 95 178, 92 182" stroke="url(#logoGradComma)" stroke-width="14" stroke-linecap="round" fill="none" />
+                        <!-- Top Accent Rays -->
+                        <line x1="128" y1="28" x2="136" y2="14" stroke="url(#ray1)" stroke-width="7" stroke-linecap="round" />
+                        <line x1="148" y1="38" x2="164" y2="26" stroke="url(#ray2)" stroke-width="7" stroke-linecap="round" />
+                        <line x1="160" y1="56" x2="178" y2="48" stroke="url(#ray3)" stroke-width="7" stroke-linecap="round" />
+                    </svg>
+
+                    <div>
+                        <div class="font-heading font-extrabold text-2xl tracking-tight text-brand-navy leading-none">
+                            Punto<span class="text-brand-purple">y</span>aparte
+                        </div>
+                        <div class="text-[11px] font-medium text-slate-500 tracking-wide mt-0.5">
+                            Tu bienestar también merece un espacio
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <button onclick="switchTab('inicio')" id="nav-inicio" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-brand-navy bg-slate-100">
+                        <i class="fa-solid fa-house mr-1.5 text-xs"></i> Inicio
+                    </button>
+                    <button onclick="switchTab('empezar')" id="nav-empezar" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-brand-purple hover:bg-slate-50">
+                        <i class="fa-solid fa-compass mr-1.5 text-xs text-brand-purple"></i> ¿Por Dónde Empiezo?
+                    </button>
+                    <button onclick="switchTab('comparar')" id="nav-comparar" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-brand-purple hover:bg-slate-50">
+                        <i class="fa-solid fa-scale-balanced mr-1.5 text-xs text-brand-cyan"></i> Comparar Alternativas
+                    </button>
+                    <button onclick="switchTab('recursos')" id="nav-recursos" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-brand-purple hover:bg-slate-50">
+                        <i class="fa-solid fa-book-bookmark mr-1.5 text-xs text-brand-mint"></i> Directorio
+                    </button>
+                    <button onclick="switchTab('opinion')" id="nav-opinion" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-brand-purple hover:bg-slate-50">
+                        <i class="fa-solid fa-comment-dots mr-1.5 text-xs text-brand-pink"></i> Opinión (Pantalla 5)
+                    </button>
+                </nav>
+
+                <!-- Quick Action CTA -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <button onclick="switchTab('empezar')" class="bg-gradient-to-r from-brand-purple to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md shadow-purple-200 transition transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i> Iniciar Orientación
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-slate-600 hover:text-brand-navy p-2 rounded-lg focus:outline-none">
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="switchTab('inicio'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2">
+                <i class="fa-solid fa-house w-5 text-brand-navy"></i> Inicio
+            </button>
+            <button onclick="switchTab('empezar'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2">
+                <i class="fa-solid fa-compass w-5 text-brand-purple"></i> ¿Por Dónde Empiezo? (Módulo 3)
+            </button>
+            <button onclick="switchTab('comparar'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2">
+                <i class="fa-solid fa-scale-balanced w-5 text-brand-cyan"></i> Comparar Alternativas
+            </button>
+            <button onclick="switchTab('recursos'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2">
+                <i class="fa-solid fa-book-bookmark w-5 text-brand-mint"></i> Directorio de Recursos
+            </button>
+            <button onclick="switchTab('opinion'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2">
+                <i class="fa-solid fa-comment-dots w-5 text-brand-pink"></i> Opinión del Usuario
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN VIEW CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ========================================== -->
+        <!-- VIEW 1: INICIO (HOME)                      -->
+        <!-- ========================================== -->
+        <section id="view-inicio" class="space-y-10">
+
+            <!-- Hero Section -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-brand-navy text-white p-8 sm:p-12 lg:p-16 shadow-2xl">
+                <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-brand-purple/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-20 -top-20 w-96 h-96 bg-brand-cyan/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-3xl space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-medium text-cyan-300">
+                        <i class="fa-solid fa-graduation-cap"></i> Espacio de Orientación Estudiantil
+                    </div>
+                    
+                    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                        Tu bienestar universitario <span class="bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">merece un espacio claro</span> y a tu ritmo.
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg font-light leading-relaxed">
+                        Entendemos los retos académicos, emocionales y personales. <strong>Punto y Aparte</strong> te ayuda a clarificar tus necesidades, explorar alternativas reales de apoyo y tomar el siguiente paso sin presiones ni diagnósticos clínicos.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <button onclick="switchTab('empezar')" class="bg-gradient-to-r from-brand-purple to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold px-6 py-3.5 rounded-2xl shadow-lg shadow-purple-900/50 transition transform hover:-translate-y-0.5 flex items-center gap-2 text-sm sm:text-base">
+                            <i class="fa-solid fa-compass"></i> ¿Por Dónde Empiezo?
+                        </button>
+                        <button onclick="switchTab('comparar')" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-2xl border border-white/20 backdrop-blur-md transition flex items-center gap-2 text-sm sm:text-base">
+                            <i class="fa-solid fa-sliders"></i> Comparar Apoyos
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mandatory Non-Clinical Legal/Ethical Disclaimer Card -->
+            <div class="bg-amber-50/90 border border-amber-200/80 rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                <div class="bg-amber-100 text-amber-800 p-3 rounded-xl flex-shrink-0">
+                    <i class="fa-solid fa-shield-halved text-xl"></i>
+                </div>
+                <div class="space-y-1 text-sm text-amber-950">
+                    <h4 class="font-bold text-base flex items-center gap-2">
+                        Nota importante sobre el propósito de la plataforma
+                    </h4>
+                    <p class="leading-relaxed">
+                        <strong>Punto y Aparte</strong> es un portal puramente psicoeducativo y de orientación informativa para estudiantes universitarios. <strong>No realiza evaluaciones clínicas, no emite diagnósticos ni prescribe tratamientos psicológicos o médicos.</strong> Su objetivo es ayudarte a identificar tus opciones para que decidas libremente el camino de acompañamiento que mejor se adapte a ti.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Key Modules Grid -->
+            <div>
+                <div class="text-center max-w-2xl mx-auto mb-8">
+                    <h2 class="font-heading text-2xl sm:text-3xl font-bold text-brand-navy">
+                        Herramientas diseñadas para ti
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base mt-2">
+                        Navega de forma autónoma, segura y confidencial a través de nuestros módulos principales.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Module Card 1: ¿Por Dónde Empiezo? -->
+                    <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-t-brand-purple flex flex-col justify-between group">
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-100 text-brand-purple flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </div>
+                            <h3 class="font-heading text-lg font-bold text-slate-800">
+                                Módulo 3. ¿Por Dónde Empiezo?
+                            </h3>
+                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                                Una experiencia guiada paso a paso con preguntas sencillas de reflexión para ordenar tus ideas, identificar qué buscas y trazar un plan claro de acción.
+                            </p>
+                        </div>
+                        <button onclick="switchTab('empezar')" class="mt-6 text-brand-purple hover:text-purple-700 text-xs sm:text-sm font-bold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                            Iniciar Guiado Paso a Paso <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Module Card 2: Comparador -->
+                    <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-t-brand-cyan flex flex-col justify-between group">
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-100 text-brand-cyan flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                            </div>
+                            <h3 class="font-heading text-lg font-bold text-slate-800">
+                                Comparativa de Alternativas
+                            </h3>
+                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                                Filtra opciones según tus posibilidades económicas, disponibilidad de tiempo, formato (presencial u online) y preferencias individuales o grupales.
+                            </p>
+                        </div>
+                        <button onclick="switchTab('comparar')" class="mt-6 text-brand-cyan hover:text-cyan-700 text-xs sm:text-sm font-bold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                            Explorar y Comparar Opción <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Module Card 3: Feedback -->
+                    <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-t-brand-pink flex flex-col justify-between group">
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 rounded-xl bg-pink-100 text-brand-pink flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-comment-dots"></i>
+                            </div>
+                            <h3 class="font-heading text-lg font-bold text-slate-800">
+                                Pantalla 5. Opinión del Usuario
+                            </h3>
+                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                                Tu experiencia nos ayuda a mejorar. Responde a nuestro breve cuestionario de valoración sobre claridad, navegación y utilidad percibida.
+                            </p>
+                        </div>
+                        <button onclick="switchTab('opinion')" class="mt-6 text-brand-pink hover:text-pink-700 text-xs sm:text-sm font-bold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                            Evaluar la Plataforma <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Stats & Student Reassurance Banner -->
+            <div class="glass-card rounded-3xl p-8 border border-slate-200/80">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="space-y-1">
+                        <div class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-navy">100%</div>
+                        <div class="text-xs text-slate-500 font-medium uppercase tracking-wider">Confidencial y Anónimo</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-purple">0</div>
+                        <div class="text-xs text-slate-500 font-medium uppercase tracking-wider">Diagnósticos Clínicos</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-cyan">24/7</div>
+                        <div class="text-xs text-slate-500 font-medium uppercase tracking-wider">Acceso Informativo</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-pink">Multi</div>
+                        <div class="text-xs text-slate-500 font-medium uppercase tracking-wider">Formatos de Apoyo</div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: MÓDULO 3 "¿POR DÓNDE EMPIEZO?"     -->
+        <!-- ========================================== -->
+        <section id="view-empezar" class="hidden space-y-8 max-w-4xl mx-auto">
+            
+            <!-- Module Title Header -->
+            <div class="text-center space-y-2">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-brand-purple text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-compass"></i> Módulo 3
+                </div>
+                <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-navy">
+                    ¿Por Dónde Empiezo? — Orientación Paso a Paso
+                </h2>
+                <p class="text-slate-600 text-sm max-w-xl mx-auto">
+                    Responde a estas reflexiones breves. Te servirán para clarificar tus inquietudes y encontrar las rutas informativas más apropiadas para ti.
+                </p>
+            </div>
+
+            <!-- Step Progress Indicator -->
+            <div class="glass-card rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center mb-3 text-xs sm:text-sm font-semibold text-slate-600">
+                    <span id="wizard-step-label">Paso 1 de 4: Área Principal</span>
+                    <span id="wizard-progress-percent" class="text-brand-purple">25% completado</span>
+                </div>
+                <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+                    <div id="wizard-progress-bar" class="bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink h-full w-1/4 transition-all duration-300"></div>
+                </div>
+                <div class="flex justify-between text-[11px] text-slate-400 mt-2 font-medium">
+                    <span>1. Inquietud</span>
+                    <span>2. Formato</span>
+                    <span>3. Disponibilidad</span>
+                    <span>4. Ruta Sugerida</span>
+                </div>
+            </div>
+
+            <!-- Wizard Card Container -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/90 relative min-h-[380px] flex flex-col justify-between">
+
+                <!-- STEP 1 -->
+                <div id="wizard-step-1" class="wizard-step space-y-6">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold text-brand-purple uppercase tracking-wider">Paso 1</span>
+                        <h3 class="font-heading text-xl font-bold text-slate-800">
+                            ¿En qué área sientes que necesitas mayor orientación en este momento?
+                        </h3>
+                        <p class="text-xs text-slate-500">Selecciona la opción con la que más te identifiques hoy:</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label onclick="selectStepOption(1, 'organizacion', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step1_q" value="organizacion" class="mt-1 text-brand-purple focus:ring-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-brain text-purple-600"></i> Organización y Estrés Académico
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Carga de trabajos, exámenes, gestión del tiempo, concentración.</div>
+                            </div>
+                        </label>
+
+                        <label onclick="selectStepOption(1, 'emocional', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step1_q" value="emocional" class="mt-1 text-brand-purple focus:ring-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-heart-pulse text-pink-500"></i> Emociones y Manejo de la Ansiedad
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Saturación personal, cambios de ánimo, preocupaciones constantes.</div>
+                            </div>
+                        </label>
+
+                        <label onclick="selectStepOption(1, 'social', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step1_q" value="social" class="mt-1 text-brand-purple focus:ring-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-users text-cyan-600"></i> Relaciones y Adaptación Universitaria
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Integración social, habilidades de comunicación, convivencia.</div>
+                            </div>
+                        </label>
+
+                        <label onclick="selectStepOption(1, 'vocacional', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step1_q" value="vocacional" class="mt-1 text-brand-purple focus:ring-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-compass text-amber-500"></i> Orientación Vocacional y Futuro
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Dudas sobre tu carrera, proyecto de vida, toma de decisiones.</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div id="wizard-step-2" class="wizard-step hidden space-y-6">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold text-brand-purple uppercase tracking-wider">Paso 2</span>
+                        <h3 class="font-heading text-xl font-bold text-slate-800">
+                            ¿Qué tipo de formato o metodología prefieres para comenzar a informarte?
+                        </h3>
+                        <p class="text-xs text-slate-500">Elige el estilo que mejor encaje con tu personalidad:</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label onclick="selectStepOption(2, 'autoguia', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step2_q" value="autoguia" class="mt-1 text-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-book-open text-indigo-600"></i> Lectura y Auto-guías Digitales
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">A mi propio ritmo, leyendo artículos, infografías y ejercicios breves.</div>
+                            </div>
+                        </label>
+
+                        <label onclick="selectStepOption(2, 'talleres', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step2_q" value="talleres" class="mt-1 text-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-people-group text-teal-600"></i> Talleres o Charlas Grupales
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Aprender compartiendo con otros estudiantes experiencias similares.</div>
+                            </div>
+                        </label>
+
+                        <label onclick="selectStepOption(2, 'individual', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step2_q" value="individual" class="mt-1 text-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-user-gear text-purple-600"></i> Orientación Individual Directa
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Hablar de forma directa y confidencial con un tutor o consejero.</div>
+                            </div>
+                        </label>
+
+                        <label onclick="selectStepOption(2, 'lineas', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step2_q" value="lineas" class="mt-1 text-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-headset text-pink-600"></i> Recurso Inmediato Digital / Telefónico
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Líneas de consulta rápida o chats institucionales sin espera.</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div id="wizard-step-3" class="wizard-step hidden space-y-6">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold text-brand-purple uppercase tracking-wider">Paso 3</span>
+                        <h3 class="font-heading text-xl font-bold text-slate-800">
+                            ¿Cuál es tu modalidad ideal y disponibilidad estimada de tiempo?
+                        </h3>
+                        <p class="text-xs text-slate-500">Esto ayuda a ordenar tus alternativas:</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <label onclick="selectStepOption(3, 'online', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex flex-col items-center text-center bg-white">
+                            <input type="radio" name="step3_q" value="online" class="mb-2 text-brand-purple">
+                            <i class="fa-solid fa-laptop text-2xl text-cyan-600 mb-2"></i>
+                            <div class="font-bold text-slate-800 text-sm">100% En Línea</div>
+                            <div class="text-xs text-slate-500 mt-1">Flexible, desde cualquier lugar y en horarios libres.</div>
+                        </label>
+
+                        <label onclick="selectStepOption(3, 'presencial', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex flex-col items-center text-center bg-white">
+                            <input type="radio" name="step3_q" value="presencial" class="mb-2 text-brand-purple">
+                            <i class="fa-solid fa-building-columns text-2xl text-purple-600 mb-2"></i>
+                            <div class="font-bold text-slate-800 text-sm">Presencial en Campus</div>
+                            <div class="text-xs text-slate-500 mt-1">Oficinas de tutoría y centros de bienestar universitario.</div>
+                        </label>
+
+                        <label onclick="selectStepOption(3, 'hibrido', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex flex-col items-center text-center bg-white">
+                            <input type="radio" name="step3_q" value="hibrido" class="mb-2 text-brand-purple">
+                            <i class="fa-solid fa-arrows-split-up-and-left text-2xl text-pink-600 mb-2"></i>
+                            <div class="font-bold text-slate-800 text-sm">Híbrido / Indiferente</div>
+                            <div class="text-xs text-slate-500 mt-1">Cualquier formato que me brinde pronta respuesta.</div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- STEP 4: SUMMARY & ROADMAP -->
+                <div id="wizard-step-4" class="wizard-step hidden space-y-6">
+                    <div class="bg-gradient-to-r from-purple-50 via-indigo-50 to-cyan-50 border border-purple-200 rounded-2xl p-6 text-slate-800 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-brand-purple text-white flex items-center justify-center text-lg font-bold">
+                                <i class="fa-solid fa-flag-checkered"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading text-lg font-bold text-brand-navy">
+                                    Tu Ruta de Orientación Personalizada
+                                </h3>
+                                <p class="text-xs text-slate-500">Resumen no evaluativo de sugerencias basadas en tus elecciones.</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs">
+                            <div class="bg-white/80 p-3 rounded-xl border border-slate-200">
+                                <span class="text-slate-400 block font-semibold">Área seleccionada</span>
+                                <span id="summary-area" class="font-bold text-brand-purple text-sm">Cargando...</span>
+                            </div>
+                            <div class="bg-white/80 p-3 rounded-xl border border-slate-200">
+                                <span class="text-slate-400 block font-semibold">Formato preferido</span>
+                                <span id="summary-format" class="font-bold text-brand-cyan text-sm">Cargando...</span>
+                            </div>
+                            <div class="bg-white/80 p-3 rounded-xl border border-slate-200">
+                                <span class="text-slate-400 block font-semibold">Modalidad</span>
+                                <span id="summary-mode" class="font-bold text-brand-pink text-sm">Cargando...</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 pt-2">
+                            <h4 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-lightbulb text-amber-500"></i> Siguientes pasos recomendados para ti:
+                            </h4>
+                            <ul id="summary-recommendations" class="list-disc list-inside text-xs text-slate-700 space-y-1.5 leading-relaxed pl-1">
+                                <!-- Dynamic JS Recommendations -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <button onclick="switchTab('comparar')" class="bg-brand-navy hover:bg-slate-900 text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-2 shadow">
+                            <i class="fa-solid fa-scale-balanced"></i> Comparar Apoyos que Coinciden
+                        </button>
+                        <button onclick="switchTab('recursos')" class="bg-brand-purple hover:bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-2 shadow">
+                            <i class="fa-solid fa-book"></i> Ver Guías de Autoayuda
+                        </button>
+                        <button onclick="resetWizard()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm transition">
+                            <i class="fa-solid fa-rotate-right"></i> Reiniciar Guía
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Wizard Footer Navigation Buttons -->
+                <div id="wizard-controls" class="flex justify-between items-center pt-6 border-t border-slate-200 mt-6">
+                    <button id="btn-prev-step" onclick="changeStep(-1)" class="invisible bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-xl text-xs sm:text-sm transition flex items-center gap-2">
+                        <i class="fa-solid fa-chevron-left"></i> Anterior
+                    </button>
+                    <button id="btn-next-step" onclick="changeStep(1)" class="bg-brand-purple hover:bg-purple-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-2 shadow-md">
+                        Siguiente <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 3: COMPARAR ALTERNATIVAS             -->
+        <!-- ========================================== -->
+        <section id="view-comparar" class="hidden space-y-8">
+
+            <div class="text-center space-y-2 max-w-2xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 text-brand-cyan text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-scale-balanced"></i> Comparador
+                </div>
+                <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-navy">
+                    Comparador de Alternativas de Apoyo
+                </h2>
+                <p class="text-slate-600 text-sm">
+                    Encuentra y contrasta distintas opciones según tus posibilidades, disponibilidad y preferencias sin presripciones forzadas.
+                </p>
+            </div>
+
+            <!-- Filters Bar -->
+            <div class="glass-card rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-wrap gap-3 items-center justify-between">
+                <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+                    <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mr-1">
+                        <i class="fa-solid fa-filter"></i> Filtros:
+                    </div>
+                    
+                    <!-- Cost Filter -->
+                    <select id="filter-cost" onchange="filterOptions()" class="bg-white border border-slate-300 text-slate-700 text-xs rounded-xl px-3 py-2 font-medium focus:ring-brand-purple focus:border-brand-purple">
+                        <option value="all">Costo: Todos</option>
+                        <option value="gratis">Gratuito</option>
+                        <option value="bajo">Bajo costo / Simbólico</option>
+                    </select>
+
+                    <!-- Format Filter -->
+                    <select id="filter-format" onchange="filterOptions()" class="bg-white border border-slate-300 text-slate-700 text-xs rounded-xl px-3 py-2 font-medium focus:ring-brand-purple">
+                        <option value="all">Formato: Todos</option>
+                        <option value="individual">Individual</option>
+                        <option value="grupal">Grupal / Taller</option>
+                        <option value="autoni">Autoguiado</option>
+                    </select>
+
+                    <!-- Modality Filter -->
+                    <select id="filter-modality" onchange="filterOptions()" class="bg-white border border-slate-300 text-slate-700 text-xs rounded-xl px-3 py-2 font-medium focus:ring-brand-purple">
+                        <option value="all">Modalidad: Todas</option>
+                        <option value="online">En Línea</option>
+                        <option value="presencial">Presencial</option>
+                    </select>
+                </div>
+
+                <!-- Selected count & compare modal launcher -->
+                <div class="flex items-center gap-3 w-full lg:w-auto justify-end pt-2 lg:pt-0 border-t lg:border-t-0 border-slate-200">
+                    <span class="text-xs text-slate-500 font-medium">
+                        Seleccionados: <strong id="selected-compare-count" class="text-brand-purple">0</strong> / 3
+                    </span>
+                    <button onclick="openCompareModal()" id="btn-open-compare" disabled class="disabled:opacity-50 disabled:cursor-not-allowed bg-brand-cyan hover:bg-cyan-600 text-white font-bold text-xs px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-columns"></i> Comparar Lado a Lado
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cards Grid for Options -->
+            <div id="options-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- JS Dynamic Render -->
+            </div>
+
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 4: DIRECTORIO DE RECURSOS             -->
+        <!-- ========================================== -->
+        <section id="view-recursos" class="hidden space-y-8">
+            <div class="text-center space-y-2 max-w-2xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-100 text-brand-mint text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-book-bookmark"></i> Directorio
+                </div>
+                <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-navy">
+                    Directorio de Recursos y Guías Preventivas
+                </h2>
+                <p class="text-slate-600 text-sm">
+                    Información psicoeducativa confiable, guías de acción rápida y líneas institucionales de apoyo.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Guide Card 1 -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Guía Práctica</span>
+                        <h3 class="font-bold text-slate-800 text-base">Técnicas de Descompresión para Época de Exámenes</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Estrategias breves de respiración diafragmática, estructuración de bloques de estudio (Pomodoro) y manejo de pensamientos rumiativos.
+                        </p>
+                    </div>
+                    <button onclick="showGuideDetail('Gestión del Estrés Académico', 'Esta guía abarca hábitos de sueño, pausas activas cada 45 minutos y ejercicios de respiración de 4 tiempos para reducir el pico de ansiedad antes de una evaluación.')" class="mt-4 text-brand-purple hover:underline text-xs font-bold text-left flex items-center gap-1">
+                        Leer guía completa <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Guide Card 2 -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <span class="bg-purple-100 text-purple-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Autoayuda</span>
+                        <h3 class="font-bold text-slate-800 text-base">Higiene del Sueño y Descanso Activo</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Cómo restablecer ciclos circadianos cuando el estudio nocturno afecta el rendimiento diario y el estado de ánimo.
+                        </p>
+                    </div>
+                    <button onclick="showGuideDetail('Higiene del Sueño', 'Recomendaciones esenciales: evitar pantallas 30 minutos antes de dormir, no consumir cafeína pasadas las 6:00 PM y mantener una temperatura fresca en la habitación.')" class="mt-4 text-brand-purple hover:underline text-xs font-bold text-left flex items-center gap-1">
+                        Leer guía completa <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Guide Card 3 -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <span class="bg-teal-100 text-teal-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Comunidad</span>
+                        <h3 class="font-bold text-slate-800 text-base">Redes de Apoyo entre Pares Universitario</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Aprende cómo organizar grupos de estudio colaborativo y acompañamiento afectivo entre compañeros de facultad.
+                        </p>
+                    </div>
+                    <button onclick="showGuideDetail('Acompañamiento entre Pares', 'El apoyo social disminuye en un 40% el sentimiento de aislamiento estudiantil. Aprende a escuchar activamente a un compañero y cuándo canalizar con profesionales.')" class="mt-4 text-brand-purple hover:underline text-xs font-bold text-left flex items-center gap-1">
+                        Leer guía completa <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Emergency Line Box -->
+            <div class="bg-gradient-to-r from-slate-900 to-indigo-950 rounded-3xl p-6 text-white flex flex-col md:flex-row justify-between items-center gap-6 shadow-lg">
+                <div class="space-y-2 text-center md:text-left">
+                    <span class="bg-rose-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Atención de Urgencia 24/7</span>
+                    <h3 class="font-heading text-xl font-bold">¿Necesitas contención inmediata de crisis?</h3>
+                    <p class="text-xs text-slate-300 max-w-xl">
+                        Si te encuentras en una situación extrema o desbordante, comunícate inmediatamente a las líneas telefónicas gratuitas y confidenciales especializadas.
+                    </p>
+                </div>
+                <button onclick="openCrisisModal()" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-6 py-3 rounded-2xl text-xs sm:text-sm transition flex-shrink-0 flex items-center gap-2 shadow-lg">
+                    <i class="fa-solid fa-phone-volume"></i> Ver Teléfonos de Emergencia
+                </button>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 5: OPINIÓN DEL USUARIO (PANTALLA 5)   -->
+        <!-- ========================================== -->
+        <section id="view-opinion" class="hidden space-y-8 max-w-2xl mx-auto">
+
+            <!-- Title & Subtitle -->
+            <div class="text-center space-y-2">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-100 text-brand-pink text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-comment-dots"></i> Pantalla 5
+                </div>
+                <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-navy">
+                    Opinión del Usuario
+                </h2>
+                <p class="text-slate-600 text-sm">
+                    Cuestionario breve para valorar claridad, facilidad de navegación y utilidad percibida de la plataforma.
+                </p>
+            </div>
+
+            <!-- Feedback Multi-step Form Card (Modeled after Mockup Image) -->
+            <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200/90 relative">
+                
+                <!-- Mockup Progress Indicator (1 - 2) -->
+                <div class="flex justify-center items-center gap-4 mb-8">
+                    <div id="fb-indicator-1" class="w-8 h-8 rounded-full border-2 border-brand-purple bg-brand-purple text-white font-bold text-sm flex items-center justify-center transition-all">
+                        1
+                    </div>
+                    <div id="fb-line" class="w-16 h-0.5 bg-slate-300 transition-all"></div>
+                    <div id="fb-indicator-2" class="w-8 h-8 rounded-full border-2 border-slate-300 text-slate-400 font-bold text-sm flex items-center justify-center transition-all">
+                        2
+                    </div>
+                </div>
+
+                <!-- Form Container -->
+                <form id="feedback-form" onsubmit="handleFeedbackSubmit(event)">
+
+                    <!-- STEP 1: RATING -->
+                    <div id="fb-step-1" class="space-y-6">
+                        
+                        <!-- Main Rating Header -->
+                        <div class="text-center space-y-1">
+                            <h3 class="font-heading text-xl font-bold text-slate-800">
+                                ¿Cómo calificarías tu experiencia general?
+                            </h3>
+                            <p class="text-xs text-slate-500">Selecciona las estrellas para valorar la plataforma *</p>
+                        </div>
+
+                        <!-- Star Rating Picker -->
+                        <div class="bg-slate-50/80 border border-slate-200 rounded-2xl p-6 text-center space-y-3">
+                            <div class="star-rating flex justify-center gap-3 text-3xl text-slate-300 cursor-pointer">
+                                <i class="fa-solid fa-star" data-rating="1" onclick="setRating(1)"></i>
+                                <i class="fa-solid fa-star" data-rating="2" onclick="setRating(2)"></i>
+                                <i class="fa-solid fa-star" data-rating="3" onclick="setRating(3)"></i>
+                                <i class="fa-solid fa-star" data-rating="4" onclick="setRating(4)"></i>
+                                <i class="fa-solid fa-star" data-rating="5" onclick="setRating(5)"></i>
+                            </div>
+                            <div class="flex justify-between text-[11px] text-slate-400 font-medium px-4">
+                                <span>Deficiente</span>
+                                <span id="rating-text-display" class="font-bold text-brand-purple">Selecciona una calificación</span>
+                                <span>Excelente</span>
+                            </div>
+                        </div>
+
+                        <!-- Specific Criteria Ratings -->
+                        <div class="space-y-4 pt-2">
+                            <h4 class="font-bold text-xs uppercase tracking-wider text-slate-500">Valoración por Aspectos:</h4>
+                            
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-200 text-xs">
+                                    <span class="font-medium text-slate-700">Claridad de la información</span>
+                                    <div class="flex gap-1 text-amber-400 text-sm">
+                                        <select id="rate-clarity" class="bg-slate-100 border border-slate-300 rounded px-2 py-1 text-slate-700 font-semibold text-xs">
+                                            <option value="5">5 - Excelente</option>
+                                            <option value="4" selected>4 - Buena</option>
+                                            <option value="3">3 - Regular</option>
+                                            <option value="2">2 - Confusa</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-200 text-xs">
+                                    <span class="font-medium text-slate-700">Facilidad de navegación</span>
+                                    <div class="flex gap-1 text-amber-400 text-sm">
+                                        <select id="rate-nav" class="bg-slate-100 border border-slate-300 rounded px-2 py-1 text-slate-700 font-semibold text-xs">
+                                            <option value="5" selected>5 - Muy fácil</option>
+                                            <option value="4">4 - Fácil</option>
+                                            <option value="3">3 - Aceptable</option>
+                                            <option value="2">2 - Difícil</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-200 text-xs">
+                                    <span class="font-medium text-slate-700">Utilidad percibida de los módulos</span>
+                                    <div class="flex gap-1 text-amber-400 text-sm">
+                                        <select id="rate-utility" class="bg-slate-100 border border-slate-300 rounded px-2 py-1 text-slate-700 font-semibold text-xs">
+                                            <option value="5" selected>5 - Muy útil</option>
+                                            <option value="4">4 - Útil</option>
+                                            <option value="3">3 - Moderada</option>
+                                            <option value="2">2 - Poco útil</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 1 Button -->
+                        <div class="flex justify-end pt-4">
+                            <button type="button" onclick="goFeedbackStep(2)" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-2xl text-sm transition flex items-center gap-2 shadow-lg shadow-blue-200">
+                                Siguiente <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <!-- STEP 2: COMMENTS & SUGGESTIONS -->
+                    <div id="fb-step-2" class="hidden space-y-6">
+
+                        <div class="space-y-1">
+                            <h3 class="font-heading text-xl font-bold text-slate-800">
+                                Cuéntanos más sobre tu experiencia
+                            </h3>
+                            <p class="text-xs text-slate-500">Tus comentarios nos permiten adaptar la plataforma a lo que realmente necesitas.</p>
+                        </div>
+
+                        <!-- Highlights Checkboxes -->
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-slate-700">Aspectos que consideras más valiosos:</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                                <label class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100">
+                                    <input type="checkbox" value="sin_diagnostico" class="rounded text-brand-purple focus:ring-brand-purple" checked>
+                                    <span>Enfoque sin diagnósticos ético</span>
+                                </label>
+                                <label class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100">
+                                    <input type="checkbox" value="claridad" class="rounded text-brand-purple focus:ring-brand-purple" checked>
+                                    <span>Claridad en los pasos (Módulo 3)</span>
+                                </label>
+                                <label class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100">
+                                    <input type="checkbox" value="comparador" class="rounded text-brand-purple focus:ring-brand-purple">
+                                    <span>Comparador de opciones</span>
+                                </label>
+                                <label class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100">
+                                    <input type="checkbox" value="diseno" class="rounded text-brand-purple focus:ring-brand-purple">
+                                    <span>Diseño y amigabilidad</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Open Feedback Textarea (Matching UI mockup) -->
+                        <div class="space-y-2">
+                            <label for="fb-comments" class="block text-xs font-bold text-slate-700">
+                                Sugerencias de mejora o comentarios adicionales:
+                            </label>
+                            <div class="relative">
+                                <textarea id="fb-comments" rows="4" placeholder="Valoro mucho la variedad de alternativas presentadas y la claridad del lenguaje sin tecnicismos..." class="w-full border border-purple-300 focus:border-brand-purple focus:ring-2 focus:ring-purple-200 rounded-2xl p-4 text-xs sm:text-sm text-slate-800 placeholder-slate-400 outline-none transition"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 Controls -->
+                        <div class="flex justify-between items-center pt-4">
+                            <button type="button" onclick="goFeedbackStep(1)" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-4 py-2.5 rounded-2xl text-xs sm:text-sm transition flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-left"></i> Regresar
+                            </button>
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-7 py-3 rounded-2xl text-sm transition flex items-center gap-2 shadow-lg shadow-blue-200">
+                                Enviar Opinión <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white border-t border-slate-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <!-- Brand Info -->
+                <div class="space-y-3 md:col-span-2">
+                    <div class="flex items-center gap-2">
+                        <span class="font-heading font-extrabold text-2xl tracking-tight text-white">
+                            Punto<span class="text-brand-purple">y</span>aparte
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        Tu bienestar también merece un espacio. Plataforma psicoeducativa de orientación estudiantil diseñada para el discernimiento libre y la búsqueda de alternativas personalizadas.
+                    </p>
+                    <p class="text-[11px] text-slate-500 font-mono">
+                        © 2026 Punto y Aparte. Todos los derechos reservados.
+                    </p>
+                </div>
+
+                <!-- Navigation -->
+                <div class="space-y-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-300">Navegación</h4>
+                    <ul class="text-xs text-slate-400 space-y-2">
+                        <li><a href="#" onclick="switchTab('inicio'); return false;" class="hover:text-white transition">Inicio</a></li>
+                        <li><a href="#" onclick="switchTab('empezar'); return false;" class="hover:text-white transition">¿Por Dónde Empiezo?</a></li>
+                        <li><a href="#" onclick="switchTab('comparar'); return false;" class="hover:text-white transition">Comparar Alternativas</a></li>
+                        <li><a href="#" onclick="switchTab('recursos'); return false;" class="hover:text-white transition">Directorio de Recursos</a></li>
+                        <li><a href="#" onclick="switchTab('opinion'); return false;" class="hover:text-white transition">Opinión (Pantalla 5)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal Disclaimer & Ethics -->
+                <div class="space-y-2">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-300">Aviso Ético</h4>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">
+                        No somos un servicio médico ni hospitalario. Si estás experimentando una emergencia médica o de salud mental grave, acude al centro de salud más cercano.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ========================================== -->
+    <!-- MODALS & OVERLAYS                          -->
+    <!-- ========================================== -->
+
+    <!-- Modal 1: Side-by-Side Comparison Modal -->
+    <div id="compare-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6 shadow-2xl relative">
+            <button onclick="closeCompareModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 p-2 rounded-full text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="space-y-1">
+                <h3 class="font-heading text-xl font-bold text-brand-navy flex items-center gap-2">
+                    <i class="fa-solid fa-scale-balanced text-brand-cyan"></i> Comparativa de Opciones Seleccionadas
+                </h3>
+                <p class="text-xs text-slate-500">Tabla comparativa para ayudarte a decidir el mejor formato para ti.</p>
+            </div>
+
+            <div id="compare-modal-content" class="overflow-x-auto">
+                <!-- Dynamic Comparison Table JS -->
+            </div>
+
+            <div class="flex justify-end pt-4 border-t border-slate-200">
+                <button onclick="closeCompareModal()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition">
+                    Cerrar Comparación
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Emergency Crisis Lines -->
+    <div id="crisis-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl relative border-t-8 border-t-rose-600">
+            <button onclick="closeCrisisModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 p-2 rounded-full text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="space-y-2 text-center">
+                <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto text-xl">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </div>
+                <h3 class="font-heading text-xl font-bold text-slate-900">
+                    Líneas de Atención Gratuita 24/7
+                </h3>
+                <p class="text-xs text-slate-600">
+                    Si necesitas ser escuchado inmediatamente por un especialista de contención en crisis:
+                </p>
+            </div>
+
+            <div class="space-y-3 text-xs">
+                <div class="p-4 rounded-2xl bg-rose-50 border border-rose-200 flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-rose-900">Línea de la Vida (Nacional)</div>
+                        <div class="text-slate-500">Atención emocional y adicciones 24/7</div>
+                    </div>
+                    <a href="tel:8009112000" class="bg-rose-600 text-white font-bold px-3 py-2 rounded-xl hover:bg-rose-700 text-xs transition">
+                        800 911 2000
+                    </a>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-purple-50 border border-purple-200 flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-purple-900">Orientación Psicológica UNAM / Universitaria</div>
+                        <div class="text-slate-500">Atención telefónica estudiante</div>
+                    </div>
+                    <a href="tel:5550250855" class="bg-purple-600 text-white font-bold px-3 py-2 rounded-xl hover:bg-purple-700 text-xs transition">
+                        55 5025 0855
+                    </a>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-cyan-50 border border-cyan-200 flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-cyan-900">SAPTEL (Consejo Psicológico)</div>
+                        <div class="text-slate-500">Servicio de apoyo psicológico por teléfono</div>
+                    </div>
+                    <a href="tel:5552598121" class="bg-cyan-600 text-white font-bold px-3 py-2 rounded-xl hover:bg-cyan-700 text-xs transition">
+                        55 5259 8121
+                    </a>
+                </div>
+            </div>
+
+            <p class="text-[11px] text-center text-slate-400">
+                Llamadas gratuitas, confidenciales y sin costo desde cualquier teléfono.
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal 3: Guide Detail View Modal -->
+    <div id="guide-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-4 shadow-2xl relative">
+            <button onclick="closeGuideModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 p-2 rounded-full text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 id="guide-modal-title" class="font-heading text-xl font-bold text-brand-navy">
+                Título Guía
+            </h3>
+            <p id="guide-modal-body" class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Contenido detallado...
+            </p>
+            <div class="pt-4 flex justify-end">
+                <button onclick="closeGuideModal()" class="bg-brand-purple text-white font-bold px-5 py-2 rounded-xl text-xs">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: Feedback Submission Success Confirmation -->
+    <div id="feedback-success-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center space-y-5 shadow-2xl">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="font-heading text-2xl font-bold text-slate-900">
+                ¡Gracias por tus comentarios!
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+                Hemos registrado tu valoración. Tus sugerencias son fundamentales para mantener a <strong>Punto y Aparte</strong> como un espacio claro, accesible y útil para toda la comunidad estudiantil.
+            </p>
+            <button onclick="closeFeedbackSuccessModal()" class="bg-brand-navy hover:bg-slate-900 text-white font-bold px-6 py-3 rounded-2xl text-xs transition w-full shadow-md">
+                Volver al Inicio
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT LOGIC                           -->
+    <!-- ========================================== -->
+    <script>
+        // DATA MODEL: Support Alternatives
+        const supportOptionsData = [
+            {
+                id: 'opt1',
+                title: 'Tutorías de Pares Universitarios',
+                type: 'autoni',
+                format: 'grupal',
+                modality: 'presencial',
+                cost: 'gratis',
+                costLabel: 'Gratuito',
+                icon: 'fa-user-group',
+                badgeColor: 'bg-emerald-100 text-emerald-800',
+                desc: 'Grupos de estudio organizados por alumnos de semestres avanzados para repasar materias complejas y compartir metodologías de estudio.',
+                privacy: 'Alta (Entre estudiantes)',
+                time: 'Semanal / 2 horas',
+                idealFor: 'Dificultades académicas puntuales y búsqueda de integración universitaria.'
+            },
+            {
+                id: 'opt2',
+                title: 'Orientación Psicopedagógica Individual',
+                type: 'individual',
+                format: 'individual',
+                modality: 'presencial',
+                cost: 'gratis',
+                costLabel: 'Gratuito',
+                icon: 'fa-user-check',
+                badgeColor: 'bg-purple-100 text-purple-800',
+                desc: 'Sesiones breves con orientadores universitarios para estructurar técnicas de estudio, hábitos de organización y gestión del tiempo.',
+                privacy: 'Confidencial Institucional',
+                time: 'Cita previa / 45 min',
+                idealFor: 'Desorganización académica recurrente y bloqueos de estudio.'
+            },
+            {
+                id: 'opt3',
+                title: 'Talleres En Línea de Gestión del Estrés',
+                type: 'grupal',
+                format: 'grupal',
+                modality: 'online',
+                cost: 'gratis',
+                costLabel: 'Gratuito',
+                icon: 'fa-laptop-code',
+                badgeColor: 'bg-cyan-100 text-cyan-800',
+                desc: 'Webinars interactivos semanales sobre técnicas de respiración, mindfulness aplicado y manejo de la presión previa a exámenes.',
+                privacy: 'Participación abierta / Cámara opcional',
+                time: 'En vivo semanal (1 hora)',
+                idealFor: 'Estudiantes con horarios apretados que prefieren formato remoto.'
+            },
+            {
+                id: 'opt4',
+                title: 'Plataforma de Autoayuda & Módulos Digitales',
+                type: 'autoni',
+                format: 'autoni',
+                modality: 'online',
+                cost: 'gratis',
+                costLabel: 'Gratuito',
+                icon: 'fa-book-open-reader',
+                badgeColor: 'bg-indigo-100 text-indigo-800',
+                desc: 'Recursos interactivos descargables, infografías y bitácoras personales para autorregular hábitos sin necesidad de agenda previa.',
+                privacy: '100% Anónimo',
+                time: 'Disponible 24/7',
+                idealFor: 'Quienes prefieren reflexionar de manera totalmente autónoma.'
+            },
+            {
+                id: 'opt5',
+                title: 'Clínica de Acompañamiento Psicológico Institucional',
+                type: 'individual',
+                format: 'individual',
+                modality: 'presencial',
+                cost: 'bajo',
+                costLabel: 'Costo Simbólico',
+                icon: 'fa-hand-holding-heart',
+                badgeColor: 'bg-pink-100 text-pink-800',
+                desc: 'Servicio de apoyo emocional breve para estudiantes impartido por profesionales en centros especializados.',
+                privacy: 'Confidencialidad Profesional',
+                time: 'Sesiones programadas',
+                idealFor: 'Malestar emocional constante o necesidad de contención estructurada.'
+            },
+            {
+                id: 'opt6',
+                title: 'Línea de Escucha Activa & Chat Estudiantil',
+                type: 'individual',
+                format: 'individual',
+                modality: 'online',
+                cost: 'gratis',
+                costLabel: 'Gratuito',
+                icon: 'fa-headset',
+                badgeColor: 'bg-teal-100 text-teal-800',
+                desc: 'Chat anónimo en tiempo real con consejeros para desahogo emocional y orientación inmediata en días de crisis lectiva.',
+                privacy: 'Anonimato garantizado',
+                time: 'Respuesta inmediata',
+                idealFor: 'Momentos de abrumación o necesidad inmediata de desahogo.'
+            }
+        ];
+
+        // STATE MANAGEMENT
+        let currentTab = 'inicio';
+        let wizardCurrentStep = 1;
+        let wizardAnswers = {
+            step1: 'organizacion',
+            step2: 'autoguia',
+            step3: 'online'
+        };
+        let selectedOptionsForCompare = [];
+        let currentRating = 0;
+
+        // INITIALIZATION
+        window.onload = function() {
+            renderSupportOptions();
+            updateCompareUI();
+        };
+
+        // NAVIGATION TAB SWITCHER
+        function switchTab(tabId) {
+            currentTab = tabId;
+            const views = ['inicio', 'empezar', 'comparar', 'recursos', 'opinion'];
+            
+            views.forEach(v => {
+                const el = document.getElementById(`view-${v}`);
+                const navBtn = document.getElementById(`nav-${v}`);
+                
+                if (v === tabId) {
+                    el.classList.remove('hidden');
+                    if (navBtn) {
+                        navBtn.classList.add('text-brand-navy', 'bg-slate-100');
+                        navBtn.classList.remove('text-slate-600');
+                    }
+                } else {
+                    el.classList.add('hidden');
+                    if (navBtn) {
+                        navBtn.classList.remove('text-brand-navy', 'bg-slate-100');
+                        navBtn.classList.add('text-slate-600');
+                    }
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // ==========================================
+        // MÓDULO 3: ¿POR DÓNDE EMPIEZO? (WIZARD)
+        // ==========================================
+        function selectStepOption(stepNum, val, element) {
+            wizardAnswers[`step${stepNum}`] = val;
+            
+            // Highlight styling
+            const siblings = element.parentElement.querySelectorAll('.step-option-btn');
+            siblings.forEach(s => {
+                s.classList.remove('border-brand-purple', 'bg-purple-50/80', 'ring-2', 'ring-purple-200');
+            });
+            element.classList.add('border-brand-purple', 'bg-purple-50/80', 'ring-2', 'ring-purple-200');
+        }
+
+        function changeStep(delta) {
+            const newStep = wizardCurrentStep + delta;
+            if (newStep < 1 || newStep > 4) return;
+
+            // Hide current
+            document.getElementById(`wizard-step-${wizardCurrentStep}`).classList.add('hidden');
+            wizardCurrentStep = newStep;
+
+            // Show new
+            document.getElementById(`wizard-step-${wizardCurrentStep}`).classList.remove('hidden');
+
+            // Update Progress Header
+            const labels = [
+                'Paso 1 de 4: Área Principal',
+                'Paso 2 de 4: Formato de Preferencia',
+                'Paso 3 de 4: Disponibilidad y Modalidad',
+                'Paso 4 de 4: Tu Ruta Sugerida'
+            ];
+            const percents = ['25%', '50%', '75%', '100%'];
+            const barWidths = ['w-1/4', 'w-2/4', 'w-3/4', 'w-full'];
+
+            document.getElementById('wizard-step-label').innerText = labels[wizardCurrentStep - 1];
+            document.getElementById('wizard-progress-percent').innerText = `${percents[wizardCurrentStep - 1]} completado`;
+            
+            const progressBar = document.getElementById('wizard-progress-bar');
+            progressBar.className = `bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink h-full transition-all duration-300 ${barWidths[wizardCurrentStep - 1]}`;
+
+            // Controls visibility
+            const btnPrev = document.getElementById('btn-prev-step');
+            const btnNext = document.getElementById('btn-next-step');
+
+            if (wizardCurrentStep === 1) {
+                btnPrev.classList.add('invisible');
+            } else {
+                btnPrev.classList.remove('invisible');
+            }
+
+            if (wizardCurrentStep === 4) {
+                btnNext.classList.add('hidden');
+                generateWizardSummary();
+            } else {
+                btnNext.classList.remove('hidden');
+            }
+        }
+
+        function generateWizardSummary() {
+            const areaNames = {
+                organizacion: 'Organización y Estrés Académico',
+                emocional: 'Emociones y Manejo de Ansiedad',
+                social: 'Relaciones y Adaptación',
+                vocacional: 'Orientación Vocacional'
+            };
+            const formatNames = {
+                autoguia: 'Lecturas y Auto-guías',
+                talleres: 'Talleres Grupales',
+                individual: 'Orientación Individual Directa',
+                lineas: 'Recurso / Línea Inmediata'
+            };
+            const modeNames = {
+                online: '100% En Línea',
+                presencial: 'Presencial en Campus',
+                hibrido: 'Híbrido / Indiferente'
+            };
+
+            document.getElementById('summary-area').innerText = areaNames[wizardAnswers.step1] || 'Organización';
+            document.getElementById('summary-format').innerText = formatNames[wizardAnswers.step2] || 'Auto-guía';
+            document.getElementById('summary-mode').innerText = modeNames[wizardAnswers.step3] || 'En Línea';
+
+            const recsList = document.getElementById('summary-recommendations');
+            recsList.innerHTML = '';
+
+            const recs = [
+                `Explora guías sobre <strong>${areaNames[wizardAnswers.step1]}</strong> en nuestro directorio de recursos informativos.`,
+                `Te sugerimos comparar opciones en modalidad <strong>${modeNames[wizardAnswers.step3]}</strong> para mantener la flexibilidad que buscas.`,
+                `Recuerda que no estás evaluando la gravedad de tu estado; simplemente estás eligiendo herramientas útiles de apoyo.`
+            ];
+
+            recs.forEach(r => {
+                const li = document.createElement('li');
+                li.innerHTML = r;
+                recsList.appendChild(li);
+            });
+        }
+
+        function resetWizard() {
+            document.getElementById(`wizard-step-${wizardCurrentStep}`).classList.add('hidden');
+            wizardCurrentStep = 1;
+            document.getElementById('wizard-step-1').classList.remove('hidden');
+            document.getElementById('btn-next-step').classList.remove('hidden');
+            document.getElementById('btn-prev-step').classList.add('invisible');
+            
+            document.getElementById('wizard-step-label').innerText = 'Paso 1 de 4: Área Principal';
+            document.getElementById('wizard-progress-percent').innerText = '25% completado';
+            document.getElementById('wizard-progress-bar').className = 'bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink h-full transition-all duration-300 w-1/4';
+        }
+
+
+        // ==========================================
+        // MÓDULO: COMPARADOR DE ALTERNATIVAS
+        // ==========================================
+        function renderSupportOptions() {
+            const grid = document.getElementById('options-grid');
+            grid.innerHTML = '';
+
+            const costFilter = document.getElementById('filter-cost').value;
+            const formatFilter = document.getElementById('filter-format').value;
+            const modeFilter = document.getElementById('filter-modality').value;
+
+            const filtered = supportOptionsData.filter(item => {
+                const matchCost = (costFilter === 'all') || (item.cost === costFilter);
+                const matchFormat = (formatFilter === 'all') || (item.format === formatFilter);
+                const matchMode = (modeFilter === 'all') || (item.modality === modeFilter);
+                return matchCost && matchFormat && matchMode;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-slate-500 space-y-2">
+                        <i class="fa-solid fa-filter-circle-xmark text-3xl text-slate-300"></i>
+                        <p class="text-sm font-medium">No se encontraron alternativas con los filtros seleccionados.</p>
+                        <button onclick="resetFilters()" class="text-xs text-brand-purple underline font-bold">Restablecer Filtros</button>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const isSelected = selectedOptionsForCompare.includes(item.id);
+
+                const card = document.createElement('div');
+                card.className = `glass-card rounded-2xl p-6 border transition flex flex-col justify-between ${isSelected ? 'border-brand-purple ring-2 ring-purple-300 bg-purple-50/20' : 'border-slate-200'}`;
+
+                card.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start gap-2">
+                            <span class="${item.badgeColor} text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                                ${item.costLabel}
+                            </span>
+                            <button onclick="toggleSelectCompare('${item.id}')" class="text-xs font-bold px-2.5 py-1 rounded-xl transition flex items-center gap-1 ${isSelected ? 'bg-brand-purple text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'}">
+                                <i class="fa-solid ${isSelected ? 'fa-check' : 'fa-plus'}"></i> ${isSelected ? 'Seleccionado' : 'Comparar'}
+                            </button>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                                <i class="fa-solid ${item.icon} text-brand-purple"></i> ${item.title}
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                                ${item.desc}
+                            </p>
+                        </div>
+
+                        <div class="space-y-1.5 pt-2 border-t border-slate-100 text-xs">
+                            <div class="flex justify-between text-slate-600">
+                                <span class="text-slate-400">Modalidad:</span>
+                                <span class="font-semibold capitalize">${item.modality}</span>
+                            </div>
+                            <div class="flex justify-between text-slate-600">
+                                <span class="text-slate-400">Privacidad:</span>
+                                <span class="font-semibold">${item.privacy}</span>
+                            </div>
+                            <div class="flex justify-between text-slate-600">
+                                <span class="text-slate-400">Disponibilidad:</span>
+                                <span class="font-semibold">${item.time}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-slate-100">
+                        <button onclick="showOptionDetail('${item.id}')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2 rounded-xl text-xs transition">
+                            Ver detalles de acceso
+                        </button>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function filterOptions() {
+            renderSupportOptions();
+        }
+
+        function resetFilters() {
+            document.getElementById('filter-cost').value = 'all';
+            document.getElementById('filter-format').value = 'all';
+            document.getElementById('filter-modality').value = 'all';
+            renderSupportOptions();
+        }
+
+        function toggleSelectCompare(id) {
+            const idx = selectedOptionsForCompare.indexOf(id);
+            if (idx > -1) {
+                selectedOptionsForCompare.splice(idx, 1);
+            } else {
+                if (selectedOptionsForCompare.length >= 3) {
+                    alertModal("Límite de comparación", "Puedes seleccionar un máximo de 3 opciones para comparar lado a lado.");
+                    return;
+                }
+                selectedOptionsForCompare.push(id);
+            }
+            updateCompareUI();
+            renderSupportOptions();
+        }
+
+        function updateCompareUI() {
+            const countEl = document.getElementById('selected-compare-count');
+            const btn = document.getElementById('btn-open-compare');
+            countEl.innerText = selectedOptionsForCompare.length;
+
+            if (selectedOptionsForCompare.length >= 2) {
+                btn.disabled = false;
+            } else {
+                btn.disabled = true;
+            }
+        }
+
+        function openCompareModal() {
+            if (selectedOptionsForCompare.length < 2) return;
+
+            const selectedData = supportOptionsData.filter(item => selectedOptionsForCompare.includes(item.id));
+            const container = document.getElementById('compare-modal-content');
+
+            let html = `
+                <table class="w-full text-xs text-left border-collapse min-w-[500px]">
+                    <thead>
+                        <tr class="border-b border-slate-200 bg-slate-50">
+                            <th class="p-3 font-bold text-slate-500 uppercase w-1/4">Criterio</th>
+                            ${selectedData.map(d => `<th class="p-3 font-bold text-brand-navy text-sm w-1/3">${d.title}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-400">Costo</td>
+                            ${selectedData.map(d => `<td class="p-3 font-bold text-slate-800">${d.costLabel}</td>`).join('')}
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-400">Modalidad</td>
+                            ${selectedData.map(d => `<td class="p-3 capitalize">${d.modality}</td>`).join('')}
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-400">Privacidad</td>
+                            ${selectedData.map(d => `<td class="p-3">${d.privacy}</td>`).join('')}
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-400">Disponibilidad</td>
+                            ${selectedData.map(d => `<td class="p-3">${d.time}</td>`).join('')}
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-400">Ideal para</td>
+                            ${selectedData.map(d => `<td class="p-3 text-slate-600">${d.idealFor}</td>`).join('')}
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+
+            container.innerHTML = html;
+            document.getElementById('compare-modal').classList.remove('hidden');
+        }
+
+        function closeCompareModal() {
+            document.getElementById('compare-modal').classList.add('hidden');
+        }
+
+        function showOptionDetail(id) {
+            const item = supportOptionsData.find(o => o.id === id);
+            if (!item) return;
+            alertModal(item.title, `${item.desc}\n\nIdeal para: ${item.idealFor}\nModalidad: ${item.modality.toUpperCase()}\nDisponibilidad: ${item.time}`);
+        }
+
+
+        // ==========================================
+        // PANTALLA 5: OPINIÓN DEL USUARIO (FEEDBACK)
+        // ==========================================
+        function setRating(rating) {
+            currentRating = rating;
+            const stars = document.querySelectorAll('.star-rating i');
+            const displayText = document.getElementById('rating-text-display');
+            const textMap = {
+                1: '1 - Deficiente',
+                2: '2 - Regular',
+                3: '3 - Aceptable',
+                4: '4 - Muy Buena',
+                5: '5 - Excelente'
+            };
+
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('active', 'text-amber-400');
+                    star.classList.remove('text-slate-300');
+                } else {
+                    star.classList.remove('active', 'text-amber-400');
+                    star.classList.add('text-slate-300');
+                }
+            });
+
+            displayText.innerText = textMap[rating] || '';
+        }
+
+        function goFeedbackStep(step) {
+            if (step === 2 && currentRating === 0) {
+                alertModal("Calificación requerida", "Por favor selecciona al menos una calificación con estrellas antes de avanzar.");
+                return;
+            }
+
+            if (step === 1) {
+                document.getElementById('fb-step-1').classList.remove('hidden');
+                document.getElementById('fb-step-2').classList.add('hidden');
+                
+                document.getElementById('fb-indicator-1').className = 'w-8 h-8 rounded-full border-2 border-brand-purple bg-brand-purple text-white font-bold text-sm flex items-center justify-center transition-all';
+                document.getElementById('fb-indicator-2').className = 'w-8 h-8 rounded-full border-2 border-slate-300 text-slate-400 font-bold text-sm flex items-center justify-center transition-all';
+                document.getElementById('fb-line').className = 'w-16 h-0.5 bg-slate-300 transition-all';
+            } else {
+                document.getElementById('fb-step-1').classList.add('hidden');
+                document.getElementById('fb-step-2').classList.remove('hidden');
+
+                document.getElementById('fb-indicator-1').className = 'w-8 h-8 rounded-full border-2 border-emerald-500 bg-emerald-500 text-white font-bold text-sm flex items-center justify-center transition-all';
+                document.getElementById('fb-indicator-2').className = 'w-8 h-8 rounded-full border-2 border-brand-purple bg-brand-purple text-white font-bold text-sm flex items-center justify-center transition-all';
+                document.getElementById('fb-line').className = 'w-16 h-0.5 bg-emerald-500 transition-all';
+            }
+        }
+
+        function handleFeedbackSubmit(e) {
+            e.preventDefault();
+            document.getElementById('feedback-success-modal').classList.remove('hidden');
+        }
+
+        function closeFeedbackSuccessModal() {
+            document.getElementById('feedback-success-modal').classList.add('hidden');
+            // Reset feedback form
+            document.getElementById('feedback-form').reset();
+            setRating(0);
+            goFeedbackStep(1);
+            switchTab('inicio');
+        }
+
+
+        // UTILITY MODALS
+        function openCrisisModal() {
+            document.getElementById('crisis-modal').classList.remove('hidden');
+        }
+
+        function closeCrisisModal() {
+            document.getElementById('crisis-modal').classList.add('hidden');
+        }
+
+        function showGuideDetail(title, body) {
+            document.getElementById('guide-modal-title').innerText = title;
+            document.getElementById('guide-modal-body').innerText = body;
+            document.getElementById('guide-modal').classList.remove('hidden');
+        }
+
+        function closeGuideModal() {
+            document.getElementById('guide-modal').classList.add('hidden');
+        }
+
+        function alertModal(title, msg) {
+            showGuideDetail(title, msg);
+        }
+    </script>
+</body>
+</html>
