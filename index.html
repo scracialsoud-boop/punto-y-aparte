@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punto y Aparte | Tu bienestar también merece un espacio</title>
+    <title>Punto y Aparte: Entre Nosotros | Bienestar Estudiantil</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -47,17 +47,24 @@
             font-family: 'Poppins', sans-serif;
         }
         .glass-card {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            border: 1px solid rgba(226, 232, 240, 0.85);
         }
         .gradient-text {
             background: linear-gradient(135deg, #0f2963 0%, #7c3aed 50%, #ec4899 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .gradient-bg-accent {
-            background: linear-gradient(135deg, #06b6d4 0%, #7c3aed 50%, #ec4899 100%);
+        /* Breathing circle animation */
+        @keyframes pulseBreathing {
+            0% { transform: scale(0.85); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
+            40% { transform: scale(1.25); box-shadow: 0 0 35px 15px rgba(6, 182, 212, 0.5); }
+            60% { transform: scale(1.25); box-shadow: 0 0 35px 15px rgba(6, 182, 212, 0.5); }
+            100% { transform: scale(0.85); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.1); }
+        }
+        .animate-breathing {
+            animation: pulseBreathing 10s infinite ease-in-out;
         }
         .star-rating i {
             transition: all 0.2s ease;
@@ -75,13 +82,13 @@
     <div class="bg-gradient-to-r from-purple-900 via-indigo-900 to-slate-900 text-white text-xs md:text-sm py-2 px-4">
         <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
             <div class="flex items-center gap-2">
-                <span class="bg-pink-500 text-white font-bold text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">Orientación Informativa</span>
-                <span class="hidden sm:inline">Plataforma psicoeducativa no clínica para estudiantes.</span>
+                <span class="bg-pink-500 text-white font-bold text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">Orientación Gratuita</span>
+                <span class="hidden sm:inline">Sin registro obligatorio • Acceso confidencial para estudiantes.</span>
             </div>
             <div class="flex items-center gap-3">
-                <span class="text-slate-300">¿Necesitas apoyo de urgencia?</span>
-                <button onclick="openCrisisModal()" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-3 py-1 rounded-full text-xs transition flex items-center gap-1 shadow">
-                    <i class="fa-solid fa-phone"></i> Líneas 24/7
+                <span class="text-slate-300 hidden md:inline">¿Inquietud urgente?</span>
+                <button onclick="openCrisisModal()" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-3 py-1 rounded-full text-xs transition flex items-center gap-1.5 shadow">
+                    <i class="fa-solid fa-phone"></i> Líneas de Ayuda 24/7
                 </button>
             </div>
         </div>
@@ -94,8 +101,8 @@
                 
                 <!-- Logo & Brand Name -->
                 <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('inicio')">
-                    <!-- SVG Brand Mark faithfully representing provided Logo -->
-                    <svg class="h-12 w-auto" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Brand Isotype -->
+                    <svg class="h-11 sm:h-12 w-auto" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <linearGradient id="logoGradMain" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
                                 <stop offset="0%" stop-color="#0f2963"/>
@@ -115,51 +122,47 @@
                             <linearGradient id="ray2" x1="140" y1="30" x2="160" y2="60"><stop offset="0%" stop-color="#14b8a6"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient>
                             <linearGradient id="ray3" x1="160" y1="50" x2="180" y2="70"><stop offset="0%" stop-color="#f43f5e"/><stop offset="100%" stop-color="#fb7185"/></linearGradient>
                         </defs>
-                        <!-- P Main Stem Loop -->
                         <path d="M 60 170 L 60 50 C 60 25, 120 10, 140 45 C 155 70, 135 105, 100 105 L 60 105" stroke="url(#logoGradMain)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                        <!-- Inner Dot -->
                         <circle cx="98" cy="68" r="15" fill="url(#logoGradDot)" />
-                        <!-- Semicolon Comma Tail -->
                         <path d="M 102 110 C 122 110, 130 130, 115 155 C 105 170, 95 178, 92 182" stroke="url(#logoGradComma)" stroke-width="14" stroke-linecap="round" fill="none" />
-                        <!-- Top Accent Rays -->
                         <line x1="128" y1="28" x2="136" y2="14" stroke="url(#ray1)" stroke-width="7" stroke-linecap="round" />
                         <line x1="148" y1="38" x2="164" y2="26" stroke="url(#ray2)" stroke-width="7" stroke-linecap="round" />
                         <line x1="160" y1="56" x2="178" y2="48" stroke="url(#ray3)" stroke-width="7" stroke-linecap="round" />
                     </svg>
 
                     <div>
-                        <div class="font-heading font-extrabold text-2xl tracking-tight text-brand-navy leading-none">
+                        <div class="font-heading font-extrabold text-xl sm:text-2xl tracking-tight text-brand-navy leading-none">
                             Punto<span class="text-brand-purple">y</span>aparte
                         </div>
-                        <div class="text-[11px] font-medium text-slate-500 tracking-wide mt-0.5">
-                            Tu bienestar también merece un espacio
+                        <div class="text-[11px] font-semibold text-brand-pink tracking-wide mt-0.5">
+                            Entre Nosotros
                         </div>
                     </div>
                 </div>
 
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden lg:flex items-center space-x-1">
-                    <button onclick="switchTab('inicio')" id="nav-inicio" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-brand-navy bg-slate-100">
-                        <i class="fa-solid fa-house mr-1.5 text-xs"></i> Inicio
+                    <button onclick="switchTab('inicio')" id="nav-inicio" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 text-brand-navy bg-slate-100">
+                        <i class="fa-solid fa-house mr-1 text-xs"></i> Inicio
                     </button>
-                    <button onclick="switchTab('empezar')" id="nav-empezar" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-brand-purple hover:bg-slate-50">
-                        <i class="fa-solid fa-compass mr-1.5 text-xs text-brand-purple"></i> ¿Por Dónde Empiezo?
+                    <button onclick="switchTab('entrenosotros')" id="nav-entrenosotros" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 text-slate-600 hover:text-brand-purple hover:bg-slate-50">
+                        <i class="fa-solid fa-hands-holding-child mr-1 text-xs text-brand-purple"></i> Módulo 1: Entre Nosotros
                     </button>
-                    <button onclick="switchTab('comparar')" id="nav-comparar" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-brand-purple hover:bg-slate-50">
-                        <i class="fa-solid fa-scale-balanced mr-1.5 text-xs text-brand-cyan"></i> Comparar Alternativas
+                    <button onclick="switchTab('rutaconfia')" id="nav-rutaconfia" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 text-slate-600 hover:text-brand-cyan hover:bg-slate-50">
+                        <i class="fa-solid fa-route mr-1 text-xs text-brand-cyan"></i> Módulo 2: Ruta Confía
                     </button>
-                    <button onclick="switchTab('recursos')" id="nav-recursos" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-brand-purple hover:bg-slate-50">
-                        <i class="fa-solid fa-book-bookmark mr-1.5 text-xs text-brand-mint"></i> Directorio
+                    <button onclick="switchTab('empezar')" id="nav-empezar" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 text-slate-600 hover:text-brand-pink hover:bg-slate-50">
+                        <i class="fa-solid fa-compass mr-1 text-xs text-brand-pink"></i> Módulo 3: ¿Por Dónde Empiezo?
                     </button>
-                    <button onclick="switchTab('opinion')" id="nav-opinion" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-brand-purple hover:bg-slate-50">
-                        <i class="fa-solid fa-comment-dots mr-1.5 text-xs text-brand-pink"></i> Opinión (Pantalla 5)
+                    <button onclick="switchTab('opinion')" id="nav-opinion" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 text-slate-600 hover:text-brand-mint hover:bg-slate-50">
+                        <i class="fa-solid fa-comment-dots mr-1 text-xs text-brand-mint"></i> Opinión (Pantalla 5)
                     </button>
                 </nav>
 
                 <!-- Quick Action CTA -->
                 <div class="hidden sm:flex items-center gap-3">
-                    <button onclick="switchTab('empezar')" class="bg-gradient-to-r from-brand-purple to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md shadow-purple-200 transition transform hover:-translate-y-0.5">
-                        <i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i> Iniciar Orientación
+                    <button onclick="switchTab('empezar')" class="bg-gradient-to-r from-brand-purple to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md shadow-purple-200 transition transform hover:-translate-y-0.5 flex items-center gap-1.5">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Orientación Guiada
                     </button>
                 </div>
 
@@ -177,17 +180,17 @@
             <button onclick="switchTab('inicio'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2">
                 <i class="fa-solid fa-house w-5 text-brand-navy"></i> Inicio
             </button>
+            <button onclick="switchTab('entrenosotros'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2">
+                <i class="fa-solid fa-hands-holding-child w-5 text-brand-purple"></i> Módulo 1: Entre Nosotros
+            </button>
+            <button onclick="switchTab('rutaconfia'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2">
+                <i class="fa-solid fa-route w-5 text-brand-cyan"></i> Módulo 2: Ruta Confía (Directorio)
+            </button>
             <button onclick="switchTab('empezar'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2">
-                <i class="fa-solid fa-compass w-5 text-brand-purple"></i> ¿Por Dónde Empiezo? (Módulo 3)
-            </button>
-            <button onclick="switchTab('comparar'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2">
-                <i class="fa-solid fa-scale-balanced w-5 text-brand-cyan"></i> Comparar Alternativas
-            </button>
-            <button onclick="switchTab('recursos'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2">
-                <i class="fa-solid fa-book-bookmark w-5 text-brand-mint"></i> Directorio de Recursos
+                <i class="fa-solid fa-compass w-5 text-brand-pink"></i> Módulo 3: ¿Por Dónde Empiezo?
             </button>
             <button onclick="switchTab('opinion'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 flex items-center gap-2">
-                <i class="fa-solid fa-comment-dots w-5 text-brand-pink"></i> Opinión del Usuario
+                <i class="fa-solid fa-comment-dots w-5 text-brand-mint"></i> Pantalla 5: Opinión del Usuario
             </button>
         </div>
     </header>
@@ -196,142 +199,234 @@
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <!-- ========================================== -->
-        <!-- VIEW 1: INICIO (HOME)                      -->
+        <!-- PANTALLA 1: INICIO (Bienvenida y Propósito) -->
         <!-- ========================================== -->
-        <section id="view-inicio" class="space-y-10">
+        <section id="view-inicio" class="space-y-12">
 
             <!-- Hero Section -->
             <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-brand-navy text-white p-8 sm:p-12 lg:p-16 shadow-2xl">
-                <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-brand-purple/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-brand-purple/25 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="absolute -left-20 -top-20 w-96 h-96 bg-brand-cyan/20 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div class="relative z-10 max-w-3xl space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-medium text-cyan-300">
-                        <i class="fa-solid fa-graduation-cap"></i> Espacio de Orientación Estudiantil
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-cyan-300">
+                        <i class="fa-solid fa-graduation-cap"></i> Plataforma Digital de Orientación Estudiantil
                     </div>
                     
                     <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
-                        Tu bienestar universitario <span class="bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">merece un espacio claro</span> y a tu ritmo.
+                        Punto y Aparte: <span class="bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">Entre Nosotros</span>
                     </h1>
 
-                    <p class="text-slate-300 text-base sm:text-lg font-light leading-relaxed">
-                        Entendemos los retos académicos, emocionales y personales. <strong>Punto y Aparte</strong> te ayuda a clarificar tus necesidades, explorar alternativas reales de apoyo y tomar el siguiente paso sin presiones ni diagnósticos clínicos.
+                    <p class="text-slate-200 text-base sm:text-lg font-light leading-relaxed">
+                        Un espacio seguro, claro y confidencial diseñado para ayudarte a comprender tus emociones, explorar alternativas de apoyo y conectar con recursos confiables a tu propio ritmo y sin juzgarte.
                     </p>
 
                     <div class="flex flex-wrap items-center gap-4 pt-2">
-                        <button onclick="switchTab('empezar')" class="bg-gradient-to-r from-brand-purple to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold px-6 py-3.5 rounded-2xl shadow-lg shadow-purple-900/50 transition transform hover:-translate-y-0.5 flex items-center gap-2 text-sm sm:text-base">
-                            <i class="fa-solid fa-compass"></i> ¿Por Dónde Empiezo?
+                        <button onclick="switchTab('entrenosotros')" class="bg-gradient-to-r from-brand-purple to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold px-6 py-3.5 rounded-2xl shadow-lg shadow-purple-900/50 transition transform hover:-translate-y-0.5 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fa-solid fa-comments"></i> Explorar Módulo 1: Entre Nosotros
                         </button>
-                        <button onclick="switchTab('comparar')" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-2xl border border-white/20 backdrop-blur-md transition flex items-center gap-2 text-sm sm:text-base">
-                            <i class="fa-solid fa-sliders"></i> Comparar Apoyos
+                        <button onclick="switchTab('rutaconfia')" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-2xl border border-white/20 backdrop-blur-md transition flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fa-solid fa-route"></i> Ver Directorio Ruta Confía
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Mandatory Non-Clinical Legal/Ethical Disclaimer Card -->
-            <div class="bg-amber-50/90 border border-amber-200/80 rounded-2xl p-5 shadow-sm flex items-start gap-4">
+            <!-- Ethical Non-Clinical Disclaimer Card -->
+            <div class="bg-amber-50/90 border border-amber-200/90 rounded-2xl p-5 shadow-sm flex items-start gap-4">
                 <div class="bg-amber-100 text-amber-800 p-3 rounded-xl flex-shrink-0">
                     <i class="fa-solid fa-shield-halved text-xl"></i>
                 </div>
-                <div class="space-y-1 text-sm text-amber-950">
+                <div class="space-y-1 text-xs sm:text-sm text-amber-950">
                     <h4 class="font-bold text-base flex items-center gap-2">
-                        Nota importante sobre el propósito de la plataforma
+                        Compromiso de Acompañamiento Libre de Diagnósticos
                     </h4>
                     <p class="leading-relaxed">
-                        <strong>Punto y Aparte</strong> es un portal puramente psicoeducativo y de orientación informativa para estudiantes universitarios. <strong>No realiza evaluaciones clínicas, no emite diagnósticos ni prescribe tratamientos psicológicos o médicos.</strong> Su objetivo es ayudarte a identificar tus opciones para que decidas libremente el camino de acompañamiento que mejor se adapte a ti.
+                        <strong>Punto y Aparte</strong> no realiza evaluaciones clínicas ni prescribe tratamientos. Ofrecemos herramientas orientativas y un directorio transparente para que tomes tus propias decisiones con autonomía y tranquilidad.
                     </p>
                 </div>
             </div>
 
-            <!-- Key Modules Grid -->
+            <!-- Direct Module Access Grid -->
             <div>
-                <div class="text-center max-w-2xl mx-auto mb-8">
+                <div class="text-center max-w-2xl mx-auto mb-8 space-y-2">
                     <h2 class="font-heading text-2xl sm:text-3xl font-bold text-brand-navy">
-                        Herramientas diseñadas para ti
+                        Tres Módulos Integrados para Tu Bienestar
                     </h2>
-                    <p class="text-slate-600 text-sm sm:text-base mt-2">
-                        Navega de forma autónoma, segura y confidencial a través de nuestros módulos principales.
+                    <p class="text-slate-600 text-xs sm:text-sm">
+                        Accede libremente a cualquiera de nuestras áreas sin necesidad de crear cuenta ni dejar datos personales.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     
-                    <!-- Module Card 1: ¿Por Dónde Empiezo? -->
+                    <!-- Module Card 1 -->
                     <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-t-brand-purple flex flex-col justify-between group">
                         <div class="space-y-4">
                             <div class="w-12 h-12 rounded-xl bg-purple-100 text-brand-purple flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-map-location-dot"></i>
+                                <i class="fa-solid fa-hands-holding-child"></i>
                             </div>
+                            <span class="text-[10px] font-bold text-brand-purple uppercase tracking-wider">Módulo 1</span>
                             <h3 class="font-heading text-lg font-bold text-slate-800">
-                                Módulo 3. ¿Por Dónde Empiezo?
+                                Entre Nosotros
                             </h3>
-                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                                Una experiencia guiada paso a paso con preguntas sencillas de reflexión para ordenar tus ideas, identificar qué buscas y trazar un plan claro de acción.
+                            <p class="text-slate-600 text-xs leading-relaxed">
+                                Acompañamiento y confianza. Información cercana para comprender la importancia de expresar emociones, reducir el estigma y aprender a hablar con alguien de confianza.
                             </p>
                         </div>
-                        <button onclick="switchTab('empezar')" class="mt-6 text-brand-purple hover:text-purple-700 text-xs sm:text-sm font-bold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                        <button onclick="switchTab('entrenosotros')" class="mt-6 text-brand-purple hover:text-purple-700 text-xs font-bold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                            Entrar a Entre Nosotros <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Module Card 2 -->
+                    <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-t-brand-cyan flex flex-col justify-between group">
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-100 text-brand-cyan flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-route"></i>
+                            </div>
+                            <span class="text-[10px] font-bold text-brand-cyan uppercase tracking-wider">Módulo 2</span>
+                            <h3 class="font-heading text-lg font-bold text-slate-800">
+                                Ruta Confía
+                            </h3>
+                            <p class="text-slate-600 text-xs leading-relaxed">
+                                Directorio digital interactivo con servicios y profesionales identificados. Compara opciones por modalidad, horarios, ubicación y costos transparentes.
+                            </p>
+                        </div>
+                        <button onclick="switchTab('rutaconfia')" class="mt-6 text-brand-cyan hover:text-cyan-700 text-xs font-bold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                            Consultar Directorio <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Module Card 3 -->
+                    <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-t-brand-pink flex flex-col justify-between group">
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 rounded-xl bg-pink-100 text-brand-pink flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-compass"></i>
+                            </div>
+                            <span class="text-[10px] font-bold text-brand-pink uppercase tracking-wider">Módulo 3</span>
+                            <h3 class="font-heading text-lg font-bold text-slate-800">
+                                ¿Por Dónde Empiezo?
+                            </h3>
+                            <p class="text-slate-600 text-xs leading-relaxed">
+                                Experiencia guiada paso a paso con preguntas generales de reflexión para ayudarte a identificar tus necesidades y sugerirte opciones sin evaluarte clínicamente.
+                            </p>
+                        </div>
+                        <button onclick="switchTab('empezar')" class="mt-6 text-brand-pink hover:text-pink-700 text-xs font-bold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                             Iniciar Guiado Paso a Paso <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
 
-                    <!-- Module Card 2: Comparador -->
-                    <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-t-brand-cyan flex flex-col justify-between group">
-                        <div class="space-y-4">
-                            <div class="w-12 h-12 rounded-xl bg-cyan-100 text-brand-cyan flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-scale-balanced"></i>
-                            </div>
-                            <h3 class="font-heading text-lg font-bold text-slate-800">
-                                Comparativa de Alternativas
-                            </h3>
-                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                                Filtra opciones según tus posibilidades económicas, disponibilidad de tiempo, formato (presencial u online) y preferencias individuales o grupales.
-                            </p>
+                </div>
+            </div>
+
+            <!-- SECTION: De la Investigación a la Acción (Mapping Research to Platform Features) -->
+            <div class="glass-card rounded-3xl p-8 border border-slate-200 space-y-6">
+                <div class="text-center max-w-2xl mx-auto space-y-2">
+                    <span class="bg-indigo-100 text-indigo-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Fundamentación del Proyecto</span>
+                    <h2 class="font-heading text-2xl font-bold text-brand-navy">
+                        De la Investigación a la Acción Estudiantil
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-600">
+                        Cómo la plataforma responde directamente a las barreras identificadas en las entrevistas universitarias:
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-2">
+                        <div class="flex items-center gap-2 text-rose-600 font-bold text-xs">
+                            <i class="fa-solid fa-circle-exclamation"></i> Hallazgo: Costo elevado
                         </div>
-                        <button onclick="switchTab('comparar')" class="mt-6 text-brand-cyan hover:text-cyan-700 text-xs sm:text-sm font-bold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                            Explorar y Comparar Opción <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                        <p class="text-xs text-slate-500">
+                            "El costo de la atención privada dificulta buscar ayuda en época universitaria."
+                        </p>
+                        <div class="pt-2 border-t border-slate-100 text-xs font-semibold text-brand-navy flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i> Respuesta: Opciones gratuitas y de cuotas simbólicas verificadas en Ruta Confía.
+                        </div>
                     </div>
 
-                    <!-- Module Card 3: Feedback -->
-                    <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-t-brand-pink flex flex-col justify-between group">
-                        <div class="space-y-4">
-                            <div class="w-12 h-12 rounded-xl bg-pink-100 text-brand-pink flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-comment-dots"></i>
-                            </div>
-                            <h3 class="font-heading text-lg font-bold text-slate-800">
-                                Pantalla 5. Opinión del Usuario
-                            </h3>
-                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                                Tu experiencia nos ayuda a mejorar. Responde a nuestro breve cuestionario de valoración sobre claridad, navegación y utilidad percibida.
-                            </p>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-2">
+                        <div class="flex items-center gap-2 text-rose-600 font-bold text-xs">
+                            <i class="fa-solid fa-clock"></i> Hallazgo: Horarios complejos
                         </div>
-                        <button onclick="switchTab('opinion')" class="mt-6 text-brand-pink hover:text-pink-700 text-xs sm:text-sm font-bold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                            Evaluar la Plataforma <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                        <p class="text-xs text-slate-500">
+                            "Las clases y trabajos imposibilitan asistir a citas en horarios rígidos."
+                        </p>
+                        <div class="pt-2 border-t border-slate-100 text-xs font-semibold text-brand-navy flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i> Respuesta: Filtro por modalidades en línea, chats y líneas telefónicas 24/7.
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-2">
+                        <div class="flex items-center gap-2 text-rose-600 font-bold text-xs">
+                            <i class="fa-solid fa-user-ninja"></i> Hallazgo: Miedo al estigma
+                        </div>
+                        <p class="text-xs text-slate-500">
+                            "Existe temor a ser juzgado o que se enteren en la universidad."
+                        </p>
+                        <div class="pt-2 border-t border-slate-100 text-xs font-semibold text-brand-navy flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i> Respuesta: Consulta 100% discreta, sin cuentas obligatorias ni etiquetas.
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-2">
+                        <div class="flex items-center gap-2 text-rose-600 font-bold text-xs">
+                            <i class="fa-solid fa-comment-slash"></i> Hallazgo: Dificultad para hablar
+                        </div>
+                        <p class="text-xs text-slate-500">
+                            "Muchos estudiantes no saben cómo expresar lo que sienten ni pedir ayuda."
+                        </p>
+                        <div class="pt-2 border-t border-slate-100 text-xs font-semibold text-brand-navy flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i> Respuesta: Guía paso a paso "Entre Nosotros" para romper el hielo.
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-2">
+                        <div class="flex items-center gap-2 text-rose-600 font-bold text-xs">
+                            <i class="fa-solid fa-magnifying-glass-question"></i> Hallazgo: Info dispersa
+                        </div>
+                        <p class="text-xs text-slate-500">
+                            "Falta de orientación clara sobre dónde acudir según cada caso."
+                        </p>
+                        <div class="pt-2 border-t border-slate-100 text-xs font-semibold text-brand-navy flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i> Respuesta: Experiencia guiada "¿Por Dónde Empiezo?" sin tecnicismos.
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-2">
+                        <div class="flex items-center gap-2 text-rose-600 font-bold text-xs">
+                            <i class="fa-solid fa-sliders"></i> Hallazgo: Preferencias variadas
+                        </div>
+                        <p class="text-xs text-slate-500">
+                            "Cada persona busca formatos distintos (individual, grupal, presencial)."
+                        </p>
+                        <div class="pt-2 border-t border-slate-100 text-xs font-semibold text-brand-navy flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i> Respuesta: Comparador de alternativas para evaluar opciones lado a lado.
+                        </div>
                     </div>
 
                 </div>
             </div>
 
-            <!-- Stats & Student Reassurance Banner -->
+            <!-- Stats Banner -->
             <div class="glass-card rounded-3xl p-8 border border-slate-200/80">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                     <div class="space-y-1">
                         <div class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-navy">100%</div>
-                        <div class="text-xs text-slate-500 font-medium uppercase tracking-wider">Confidencial y Anónimo</div>
+                        <div class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Sin Registro Obligatorio</div>
                     </div>
                     <div class="space-y-1">
                         <div class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-purple">0</div>
-                        <div class="text-xs text-slate-500 font-medium uppercase tracking-wider">Diagnósticos Clínicos</div>
+                        <div class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Etiquetas o Diagnósticos</div>
                     </div>
                     <div class="space-y-1">
                         <div class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-cyan">24/7</div>
-                        <div class="text-xs text-slate-500 font-medium uppercase tracking-wider">Acceso Informativo</div>
+                        <div class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Acceso a Información</div>
                     </div>
                     <div class="space-y-1">
-                        <div class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-pink">Multi</div>
-                        <div class="text-xs text-slate-500 font-medium uppercase tracking-wider">Formatos de Apoyo</div>
+                        <div class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-pink">5/5</div>
+                        <div class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Pantallas Funcionales</div>
                     </div>
                 </div>
             </div>
@@ -339,244 +434,157 @@
         </section>
 
         <!-- ========================================== -->
-        <!-- VIEW 2: MÓDULO 3 "¿POR DÓNDE EMPIEZO?"     -->
+        <!-- PANTALLA 2: MÓDULO 1 - ENTRE NOSOTROS       -->
         <!-- ========================================== -->
-        <section id="view-empezar" class="hidden space-y-8 max-w-4xl mx-auto">
+        <section id="view-entrenosotros" class="hidden space-y-10">
             
-            <!-- Module Title Header -->
-            <div class="text-center space-y-2">
+            <div class="text-center space-y-2 max-w-2xl mx-auto">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-brand-purple text-xs font-bold uppercase tracking-wider">
-                    <i class="fa-solid fa-compass"></i> Módulo 3
+                    <i class="fa-solid fa-hands-holding-child"></i> Módulo 1
                 </div>
                 <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-navy">
-                    ¿Por Dónde Empiezo? — Orientación Paso a Paso
+                    Entre Nosotros — Acompañamiento y Confianza
                 </h2>
-                <p class="text-slate-600 text-sm max-w-xl mx-auto">
-                    Responde a estas reflexiones breves. Te servirán para clarificar tus inquietudes y encontrar las rutas informativas más apropiadas para ti.
+                <p class="text-slate-600 text-xs sm:text-sm">
+                    Un espacio libre de juicio para comprender tus emociones, romper el estigma y aprender a hablar con alguien de tu confianza.
                 </p>
             </div>
 
-            <!-- Step Progress Indicator -->
-            <div class="glass-card rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200">
-                <div class="flex justify-between items-center mb-3 text-xs sm:text-sm font-semibold text-slate-600">
-                    <span id="wizard-step-label">Paso 1 de 4: Área Principal</span>
-                    <span id="wizard-progress-percent" class="text-brand-purple">25% completado</span>
+            <!-- Guide: How to talk to someone you trust -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
+                    <div class="w-10 h-10 rounded-xl bg-brand-purple text-white flex items-center justify-center text-lg font-bold">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading text-lg font-bold text-slate-800">
+                            ¿Cómo hablar de lo que sientes con alguien de confianza?
+                        </h3>
+                        <p class="text-xs text-slate-500">Pasos sugeridos para romper el hielo con un amigo, familiar o profesor:</p>
+                    </div>
                 </div>
-                <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-                    <div id="wizard-progress-bar" class="bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink h-full w-1/4 transition-all duration-300"></div>
-                </div>
-                <div class="flex justify-between text-[11px] text-slate-400 mt-2 font-medium">
-                    <span>1. Inquietud</span>
-                    <span>2. Formato</span>
-                    <span>3. Disponibilidad</span>
-                    <span>4. Ruta Sugerida</span>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-2 relative">
+                        <span class="absolute top-4 right-4 w-6 h-6 rounded-full bg-purple-100 text-brand-purple text-xs font-extrabold flex items-center justify-center">1</span>
+                        <h4 class="font-bold text-sm text-slate-800">Elige a la persona</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Busca a alguien con quien te sientas cómodo y que haya demostrado escucha sin juzgar previamente (un amigo cercano, un tutor o familiar).
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-2 relative">
+                        <span class="absolute top-4 right-4 w-6 h-6 rounded-full bg-purple-100 text-brand-purple text-xs font-extrabold flex items-center justify-center">2</span>
+                        <h4 class="font-bold text-sm text-slate-800">Usa frases sencillas</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            No necesitas tecnicismos. Puedes empezar con: <em>"He estado sintiéndome abrumado con las clases últimamente y me gustaría platicarlo contigo"</em>.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-2 relative">
+                        <span class="absolute top-4 right-4 w-6 h-6 rounded-full bg-purple-100 text-brand-purple text-xs font-extrabold flex items-center justify-center">3</span>
+                        <h4 class="font-bold text-sm text-slate-800">Define qué necesitas</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Aclara si solo buscas desahogarte y ser escuchado, o si deseas que te acompañe a explorar opciones de orientación profesional.
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Wizard Card Container -->
-            <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/90 relative min-h-[380px] flex flex-col justify-between">
+            <!-- Accordion: Myths vs Realities -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-4">
+                <h3 class="font-heading text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-masks-theater text-brand-cyan"></i> Mitos vs. Realidades de la Salud Mental Universitaria
+                </h3>
+                
+                <div class="space-y-3">
+                    
+                    <details class="group bg-white p-4 rounded-2xl border border-slate-200 cursor-pointer">
+                        <summary class="font-bold text-xs sm:text-sm text-slate-800 flex justify-between items-center">
+                            <span>Mito 1: "Buscar orientación significa que no puedo con la carga universitaria solo"</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-slate-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <p class="text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                            <strong>Realidad:</strong> Pedir orientación es una habilidad de autorregulación. Reconocer tus límites y explorar herramientas externas te permite rendir mejor y cuidar tu salud física y mental.
+                        </p>
+                    </details>
 
-                <!-- STEP 1 -->
-                <div id="wizard-step-1" class="wizard-step space-y-6">
-                    <div class="space-y-1">
-                        <span class="text-xs font-bold text-brand-purple uppercase tracking-wider">Paso 1</span>
-                        <h3 class="font-heading text-xl font-bold text-slate-800">
-                            ¿En qué área sientes que necesitas mayor orientación en este momento?
-                        </h3>
-                        <p class="text-xs text-slate-500">Selecciona la opción con la que más te identifiques hoy:</p>
-                    </div>
+                    <details class="group bg-white p-4 rounded-2xl border border-slate-200 cursor-pointer">
+                        <summary class="font-bold text-xs sm:text-sm text-slate-800 flex justify-between items-center">
+                            <span>Mito 2: "Siento estrés, pero seguro a los demás no les afecta tanto como a mí"</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-slate-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <p class="text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                            <strong>Realidad:</strong> La abrumación académica es una experiencia común. Muchos estudiantes disimulan su malestar por miedo al juicio. Hablarlo reduce el aislamiento.
+                        </p>
+                    </details>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <label onclick="selectStepOption(1, 'organizacion', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
-                            <input type="radio" name="step1_q" value="organizacion" class="mt-1 text-brand-purple focus:ring-brand-purple">
-                            <div>
-                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                                    <i class="fa-solid fa-brain text-purple-600"></i> Organización y Estrés Académico
-                                </div>
-                                <div class="text-xs text-slate-500 mt-1">Carga de trabajos, exámenes, gestión del tiempo, concentración.</div>
-                            </div>
-                        </label>
+                    <details class="group bg-white p-4 rounded-2xl border border-slate-200 cursor-pointer">
+                        <summary class="font-bold text-xs sm:text-sm text-slate-800 flex justify-between items-center">
+                            <span>Mito 3: "Si voy a orientación, mi expediente universitario quedará marcado"</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-slate-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <p class="text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                            <strong>Realidad:</strong> Los servicios de apoyo emocional y tutoría están protegidos por confidencialidad. No forman parte de tu historial académico oficial ni de tus calificaciones.
+                        </p>
+                    </details>
 
-                        <label onclick="selectStepOption(1, 'emocional', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
-                            <input type="radio" name="step1_q" value="emocional" class="mt-1 text-brand-purple focus:ring-brand-purple">
-                            <div>
-                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                                    <i class="fa-solid fa-heart-pulse text-pink-500"></i> Emociones y Manejo de la Ansiedad
-                                </div>
-                                <div class="text-xs text-slate-500 mt-1">Saturación personal, cambios de ánimo, preocupaciones constantes.</div>
-                            </div>
-                        </label>
-
-                        <label onclick="selectStepOption(1, 'social', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
-                            <input type="radio" name="step1_q" value="social" class="mt-1 text-brand-purple focus:ring-brand-purple">
-                            <div>
-                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                                    <i class="fa-solid fa-users text-cyan-600"></i> Relaciones y Adaptación Universitaria
-                                </div>
-                                <div class="text-xs text-slate-500 mt-1">Integración social, habilidades de comunicación, convivencia.</div>
-                            </div>
-                        </label>
-
-                        <label onclick="selectStepOption(1, 'vocacional', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
-                            <input type="radio" name="step1_q" value="vocacional" class="mt-1 text-brand-purple focus:ring-brand-purple">
-                            <div>
-                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                                    <i class="fa-solid fa-compass text-amber-500"></i> Orientación Vocacional y Futuro
-                                </div>
-                                <div class="text-xs text-slate-500 mt-1">Dudas sobre tu carrera, proyecto de vida, toma de decisiones.</div>
-                            </div>
-                        </label>
-                    </div>
                 </div>
+            </div>
 
-                <!-- STEP 2 -->
-                <div id="wizard-step-2" class="wizard-step hidden space-y-6">
+            <!-- Interactive Self-Regulation Tools -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Tool 1: Interactive Guided Breathing Widget -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 flex flex-col justify-between items-center text-center space-y-6">
                     <div class="space-y-1">
-                        <span class="text-xs font-bold text-brand-purple uppercase tracking-wider">Paso 2</span>
-                        <h3 class="font-heading text-xl font-bold text-slate-800">
-                            ¿Qué tipo de formato o metodología prefieres para comenzar a informarte?
+                        <span class="text-[10px] font-bold text-brand-purple uppercase tracking-wider">Herramienta Interactiva</span>
+                        <h3 class="font-heading text-lg font-bold text-slate-800">
+                            Pausa Activa: Respiración Guiada (4-4-4)
                         </h3>
-                        <p class="text-xs text-slate-500">Elige el estilo que mejor encaje con tu personalidad:</p>
+                        <p class="text-xs text-slate-500">Tómate un minuto para estabilizar tu ritmo cardíaco antes de continuar.</p>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <label onclick="selectStepOption(2, 'autoguia', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
-                            <input type="radio" name="step2_q" value="autoguia" class="mt-1 text-brand-purple">
-                            <div>
-                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                                    <i class="fa-solid fa-book-open text-indigo-600"></i> Lectura y Auto-guías Digitales
-                                </div>
-                                <div class="text-xs text-slate-500 mt-1">A mi propio ritmo, leyendo artículos, infografías y ejercicios breves.</div>
-                            </div>
-                        </label>
-
-                        <label onclick="selectStepOption(2, 'talleres', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
-                            <input type="radio" name="step2_q" value="talleres" class="mt-1 text-brand-purple">
-                            <div>
-                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                                    <i class="fa-solid fa-people-group text-teal-600"></i> Talleres o Charlas Grupales
-                                </div>
-                                <div class="text-xs text-slate-500 mt-1">Aprender compartiendo con otros estudiantes experiencias similares.</div>
-                            </div>
-                        </label>
-
-                        <label onclick="selectStepOption(2, 'individual', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
-                            <input type="radio" name="step2_q" value="individual" class="mt-1 text-brand-purple">
-                            <div>
-                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                                    <i class="fa-solid fa-user-gear text-purple-600"></i> Orientación Individual Directa
-                                </div>
-                                <div class="text-xs text-slate-500 mt-1">Hablar de forma directa y confidencial con un tutor o consejero.</div>
-                            </div>
-                        </label>
-
-                        <label onclick="selectStepOption(2, 'lineas', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
-                            <input type="radio" name="step2_q" value="lineas" class="mt-1 text-brand-purple">
-                            <div>
-                                <div class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                                    <i class="fa-solid fa-headset text-pink-600"></i> Recurso Inmediato Digital / Telefónico
-                                </div>
-                                <div class="text-xs text-slate-500 mt-1">Líneas de consulta rápida o chats institucionales sin espera.</div>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- STEP 3 -->
-                <div id="wizard-step-3" class="wizard-step hidden space-y-6">
-                    <div class="space-y-1">
-                        <span class="text-xs font-bold text-brand-purple uppercase tracking-wider">Paso 3</span>
-                        <h3 class="font-heading text-xl font-bold text-slate-800">
-                            ¿Cuál es tu modalidad ideal y disponibilidad estimada de tiempo?
-                        </h3>
-                        <p class="text-xs text-slate-500">Esto ayuda a ordenar tus alternativas:</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <label onclick="selectStepOption(3, 'online', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex flex-col items-center text-center bg-white">
-                            <input type="radio" name="step3_q" value="online" class="mb-2 text-brand-purple">
-                            <i class="fa-solid fa-laptop text-2xl text-cyan-600 mb-2"></i>
-                            <div class="font-bold text-slate-800 text-sm">100% En Línea</div>
-                            <div class="text-xs text-slate-500 mt-1">Flexible, desde cualquier lugar y en horarios libres.</div>
-                        </label>
-
-                        <label onclick="selectStepOption(3, 'presencial', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex flex-col items-center text-center bg-white">
-                            <input type="radio" name="step3_q" value="presencial" class="mb-2 text-brand-purple">
-                            <i class="fa-solid fa-building-columns text-2xl text-purple-600 mb-2"></i>
-                            <div class="font-bold text-slate-800 text-sm">Presencial en Campus</div>
-                            <div class="text-xs text-slate-500 mt-1">Oficinas de tutoría y centros de bienestar universitario.</div>
-                        </label>
-
-                        <label onclick="selectStepOption(3, 'hibrido', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex flex-col items-center text-center bg-white">
-                            <input type="radio" name="step3_q" value="hibrido" class="mb-2 text-brand-purple">
-                            <i class="fa-solid fa-arrows-split-up-and-left text-2xl text-pink-600 mb-2"></i>
-                            <div class="font-bold text-slate-800 text-sm">Híbrido / Indiferente</div>
-                            <div class="text-xs text-slate-500 mt-1">Cualquier formato que me brinde pronta respuesta.</div>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- STEP 4: SUMMARY & ROADMAP -->
-                <div id="wizard-step-4" class="wizard-step hidden space-y-6">
-                    <div class="bg-gradient-to-r from-purple-50 via-indigo-50 to-cyan-50 border border-purple-200 rounded-2xl p-6 text-slate-800 space-y-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-brand-purple text-white flex items-center justify-center text-lg font-bold">
-                                <i class="fa-solid fa-flag-checkered"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-heading text-lg font-bold text-brand-navy">
-                                    Tu Ruta de Orientación Personalizada
-                                </h3>
-                                <p class="text-xs text-slate-500">Resumen no evaluativo de sugerencias basadas en tus elecciones.</p>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs">
-                            <div class="bg-white/80 p-3 rounded-xl border border-slate-200">
-                                <span class="text-slate-400 block font-semibold">Área seleccionada</span>
-                                <span id="summary-area" class="font-bold text-brand-purple text-sm">Cargando...</span>
-                            </div>
-                            <div class="bg-white/80 p-3 rounded-xl border border-slate-200">
-                                <span class="text-slate-400 block font-semibold">Formato preferido</span>
-                                <span id="summary-format" class="font-bold text-brand-cyan text-sm">Cargando...</span>
-                            </div>
-                            <div class="bg-white/80 p-3 rounded-xl border border-slate-200">
-                                <span class="text-slate-400 block font-semibold">Modalidad</span>
-                                <span id="summary-mode" class="font-bold text-brand-pink text-sm">Cargando...</span>
-                            </div>
-                        </div>
-
-                        <div class="space-y-2 pt-2">
-                            <h4 class="font-bold text-sm text-slate-800 flex items-center gap-2">
-                                <i class="fa-solid fa-lightbulb text-amber-500"></i> Siguientes pasos recomendados para ti:
-                            </h4>
-                            <ul id="summary-recommendations" class="list-disc list-inside text-xs text-slate-700 space-y-1.5 leading-relaxed pl-1">
-                                <!-- Dynamic JS Recommendations -->
-                            </ul>
+                    <!-- Breathing Animated Circle -->
+                    <div class="relative w-40 h-40 flex items-center justify-center my-4">
+                        <div id="breathing-circle" class="w-28 h-28 rounded-full bg-gradient-to-tr from-brand-cyan to-brand-purple flex items-center justify-center text-white font-bold text-xs shadow-xl transition-all duration-1000">
+                            <span id="breathing-text">Listo</span>
                         </div>
                     </div>
 
-                    <div class="flex flex-wrap gap-3 justify-center">
-                        <button onclick="switchTab('comparar')" class="bg-brand-navy hover:bg-slate-900 text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-2 shadow">
-                            <i class="fa-solid fa-scale-balanced"></i> Comparar Apoyos que Coinciden
+                    <div class="flex items-center gap-3">
+                        <button onclick="startBreathingExercise()" id="btn-start-breath" class="bg-brand-purple hover:bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition shadow">
+                            <i class="fa-solid fa-play mr-1"></i> Iniciar Respiración
                         </button>
-                        <button onclick="switchTab('recursos')" class="bg-brand-purple hover:bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-2 shadow">
-                            <i class="fa-solid fa-book"></i> Ver Guías de Autoayuda
-                        </button>
-                        <button onclick="resetWizard()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm transition">
-                            <i class="fa-solid fa-rotate-right"></i> Reiniciar Guía
+                        <button onclick="stopBreathingExercise()" id="btn-stop-breath" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-4 py-2.5 rounded-xl text-xs transition">
+                            Detener
                         </button>
                     </div>
                 </div>
 
-                <!-- Wizard Footer Navigation Buttons -->
-                <div id="wizard-controls" class="flex justify-between items-center pt-6 border-t border-slate-200 mt-6">
-                    <button id="btn-prev-step" onclick="changeStep(-1)" class="invisible bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-xl text-xs sm:text-sm transition flex items-center gap-2">
-                        <i class="fa-solid fa-chevron-left"></i> Anterior
-                    </button>
-                    <button id="btn-next-step" onclick="changeStep(1)" class="bg-brand-purple hover:bg-purple-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-2 shadow-md">
-                        Siguiente <i class="fa-solid fa-chevron-right"></i>
-                    </button>
+                <!-- Tool 2: Private Local Vent Journal (Diario de Desahogo) -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 flex flex-col justify-between space-y-4">
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold text-brand-pink uppercase tracking-wider">Espacio Privado Local</span>
+                            <span class="text-[10px] text-slate-400"><i class="fa-solid fa-lock"></i> No se envía a ningún servidor</span>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-slate-800">
+                            Diario de Desahogo Digital
+                        </h3>
+                        <p class="text-xs text-slate-500">Escribe libremente lo que sientes en este momento. Tus notas quedan guardadas únicamente en tu dispositivo.</p>
+                    </div>
+
+                    <textarea id="private-vent-text" rows="4" placeholder="Hoy me siento un poco abrumado por..." class="w-full border border-slate-300 focus:border-brand-pink focus:ring-2 focus:ring-pink-200 rounded-2xl p-3 text-xs text-slate-800 placeholder-slate-400 outline-none transition"></textarea>
+
+                    <div class="flex justify-between items-center pt-1">
+                        <button onclick="clearPrivateVent()" class="text-xs text-slate-400 hover:text-rose-600 font-semibold transition">
+                            <i class="fa-solid fa-trash-can mr-1"></i> Borrar Nota
+                        </button>
+                        <button onclick="savePrivateVent()" class="bg-brand-pink hover:bg-pink-600 text-white font-bold px-5 py-2 rounded-xl text-xs transition shadow">
+                            <i class="fa-solid fa-floppy-disk mr-1"></i> Guardar Nota Privada
+                        </button>
+                    </div>
                 </div>
 
             </div>
@@ -584,19 +592,19 @@
         </section>
 
         <!-- ========================================== -->
-        <!-- VIEW 3: COMPARAR ALTERNATIVAS             -->
+        <!-- PANTALLA 3: MÓDULO 2 - RUTA CONFÍA          -->
         <!-- ========================================== -->
-        <section id="view-comparar" class="hidden space-y-8">
+        <section id="view-rutaconfia" class="hidden space-y-8">
 
             <div class="text-center space-y-2 max-w-2xl mx-auto">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 text-brand-cyan text-xs font-bold uppercase tracking-wider">
-                    <i class="fa-solid fa-scale-balanced"></i> Comparador
+                    <i class="fa-solid fa-route"></i> Módulo 2
                 </div>
                 <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-navy">
-                    Comparador de Alternativas de Apoyo
+                    Ruta Confía — Directorio Digital de Apoyo
                 </h2>
-                <p class="text-slate-600 text-sm">
-                    Encuentra y contrasta distintas opciones según tus posibilidades, disponibilidad y preferencias sin presripciones forzadas.
+                <p class="text-slate-600 text-xs sm:text-sm">
+                    Consulta y compara servicios de bienestar emocional con información clara sobre costos, modalidades y horarios.
                 </p>
             </div>
 
@@ -608,25 +616,25 @@
                     </div>
                     
                     <!-- Cost Filter -->
-                    <select id="filter-cost" onchange="filterOptions()" class="bg-white border border-slate-300 text-slate-700 text-xs rounded-xl px-3 py-2 font-medium focus:ring-brand-purple focus:border-brand-purple">
+                    <select id="filter-cost" onchange="filterOptions()" class="bg-white border border-slate-300 text-slate-700 text-xs rounded-xl px-3 py-2 font-medium focus:ring-brand-purple">
                         <option value="all">Costo: Todos</option>
                         <option value="gratis">Gratuito</option>
-                        <option value="bajo">Bajo costo / Simbólico</option>
+                        <option value="bajo">Cuota de recuperación / Bajo costo</option>
                     </select>
 
                     <!-- Format Filter -->
                     <select id="filter-format" onchange="filterOptions()" class="bg-white border border-slate-300 text-slate-700 text-xs rounded-xl px-3 py-2 font-medium focus:ring-brand-purple">
-                        <option value="all">Formato: Todos</option>
-                        <option value="individual">Individual</option>
-                        <option value="grupal">Grupal / Taller</option>
+                        <option value="all">Tipo: Todos</option>
+                        <option value="individual">Atención Individual</option>
+                        <option value="grupal">Grupos de Apoyo / Taller</option>
                         <option value="autoni">Autoguiado</option>
                     </select>
 
                     <!-- Modality Filter -->
                     <select id="filter-modality" onchange="filterOptions()" class="bg-white border border-slate-300 text-slate-700 text-xs rounded-xl px-3 py-2 font-medium focus:ring-brand-purple">
                         <option value="all">Modalidad: Todas</option>
-                        <option value="online">En Línea</option>
-                        <option value="presencial">Presencial</option>
+                        <option value="online">En Línea / Chat</option>
+                        <option value="presencial">Presencial (Campus)</option>
                     </select>
                 </div>
 
@@ -641,7 +649,7 @@
                 </div>
             </div>
 
-            <!-- Cards Grid for Options -->
+            <!-- Cards Grid for Directory Options -->
             <div id="options-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- JS Dynamic Render -->
             </div>
@@ -649,102 +657,261 @@
         </section>
 
         <!-- ========================================== -->
-        <!-- VIEW 4: DIRECTORIO DE RECURSOS             -->
+        <!-- PANTALLA 4: MÓDULO 3 - ¿POR DÓNDE EMPIEZO? -->
         <!-- ========================================== -->
-        <section id="view-recursos" class="hidden space-y-8">
-            <div class="text-center space-y-2 max-w-2xl mx-auto">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-100 text-brand-mint text-xs font-bold uppercase tracking-wider">
-                    <i class="fa-solid fa-book-bookmark"></i> Directorio
+        <section id="view-empezar" class="hidden space-y-8 max-w-4xl mx-auto">
+            
+            <div class="text-center space-y-2">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-100 text-brand-pink text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-compass"></i> Módulo 3
                 </div>
                 <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-navy">
-                    Directorio de Recursos y Guías Preventivas
+                    ¿Por Dónde Empiezo? — Orientación Paso a Paso
                 </h2>
-                <p class="text-slate-600 text-sm">
-                    Información psicoeducativa confiable, guías de acción rápida y líneas institucionales de apoyo.
+                <p class="text-slate-600 text-xs sm:text-sm max-w-xl mx-auto">
+                    Responde a estas breves preguntas de reflexión para identificar qué información necesitas sin realizar tests ni asignarte niveles de gravedad.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Guide Card 1 -->
-                <div class="glass-card rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Guía Práctica</span>
-                        <h3 class="font-bold text-slate-800 text-base">Técnicas de Descompresión para Época de Exámenes</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">
-                            Estrategias breves de respiración diafragmática, estructuración de bloques de estudio (Pomodoro) y manejo de pensamientos rumiativos.
-                        </p>
-                    </div>
-                    <button onclick="showGuideDetail('Gestión del Estrés Académico', 'Esta guía abarca hábitos de sueño, pausas activas cada 45 minutos y ejercicios de respiración de 4 tiempos para reducir el pico de ansiedad antes de una evaluación.')" class="mt-4 text-brand-purple hover:underline text-xs font-bold text-left flex items-center gap-1">
-                        Leer guía completa <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </button>
+            <!-- Step Progress Indicator -->
+            <div class="glass-card rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center mb-3 text-xs sm:text-sm font-semibold text-slate-600">
+                    <span id="wizard-step-label">Paso 1 de 4: Área Principal</span>
+                    <span id="wizard-progress-percent" class="text-brand-purple">25% completado</span>
                 </div>
-
-                <!-- Guide Card 2 -->
-                <div class="glass-card rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <span class="bg-purple-100 text-purple-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Autoayuda</span>
-                        <h3 class="font-bold text-slate-800 text-base">Higiene del Sueño y Descanso Activo</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">
-                            Cómo restablecer ciclos circadianos cuando el estudio nocturno afecta el rendimiento diario y el estado de ánimo.
-                        </p>
-                    </div>
-                    <button onclick="showGuideDetail('Higiene del Sueño', 'Recomendaciones esenciales: evitar pantallas 30 minutos antes de dormir, no consumir cafeína pasadas las 6:00 PM y mantener una temperatura fresca en la habitación.')" class="mt-4 text-brand-purple hover:underline text-xs font-bold text-left flex items-center gap-1">
-                        Leer guía completa <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </button>
-                </div>
-
-                <!-- Guide Card 3 -->
-                <div class="glass-card rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <span class="bg-teal-100 text-teal-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Comunidad</span>
-                        <h3 class="font-bold text-slate-800 text-base">Redes de Apoyo entre Pares Universitario</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">
-                            Aprende cómo organizar grupos de estudio colaborativo y acompañamiento afectivo entre compañeros de facultad.
-                        </p>
-                    </div>
-                    <button onclick="showGuideDetail('Acompañamiento entre Pares', 'El apoyo social disminuye en un 40% el sentimiento de aislamiento estudiantil. Aprende a escuchar activamente a un compañero y cuándo canalizar con profesionales.')" class="mt-4 text-brand-purple hover:underline text-xs font-bold text-left flex items-center gap-1">
-                        Leer guía completa <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </button>
+                <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+                    <div id="wizard-progress-bar" class="bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink h-full w-1/4 transition-all duration-300"></div>
                 </div>
             </div>
 
-            <!-- Emergency Line Box -->
-            <div class="bg-gradient-to-r from-slate-900 to-indigo-950 rounded-3xl p-6 text-white flex flex-col md:flex-row justify-between items-center gap-6 shadow-lg">
-                <div class="space-y-2 text-center md:text-left">
-                    <span class="bg-rose-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Atención de Urgencia 24/7</span>
-                    <h3 class="font-heading text-xl font-bold">¿Necesitas contención inmediata de crisis?</h3>
-                    <p class="text-xs text-slate-300 max-w-xl">
-                        Si te encuentras en una situación extrema o desbordante, comunícate inmediatamente a las líneas telefónicas gratuitas y confidenciales especializadas.
-                    </p>
+            <!-- Wizard Card Container -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/90 relative min-h-[380px] flex flex-col justify-between">
+
+                <!-- STEP 1 -->
+                <div id="wizard-step-1" class="wizard-step space-y-6">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold text-brand-purple uppercase tracking-wider">Paso 1</span>
+                        <h3 class="font-heading text-xl font-bold text-slate-800">
+                            ¿En qué área sientes que necesitas mayor claridad hoy?
+                        </h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label onclick="selectStepOption(1, 'organizacion', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step1_q" value="organizacion" class="mt-1 text-brand-purple focus:ring-brand-purple" checked>
+                            <div>
+                                <div class="font-bold text-slate-800 text-xs sm:text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-brain text-purple-600"></i> Estrés Académico y Tiempos
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Saturación por exámenes, organización de tareas y concentración.</div>
+                            </div>
+                        </label>
+
+                        <label onclick="selectStepOption(1, 'emocional', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step1_q" value="emocional" class="mt-1 text-brand-purple focus:ring-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-xs sm:text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-heart-pulse text-pink-500"></i> Manejo de Emociones y Ansiedad
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Sentimientos de abrumación, cambios de ánimo o tensión.</div>
+                            </div>
+                        </label>
+
+                        <label onclick="selectStepOption(1, 'social', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step1_q" value="social" class="mt-1 text-brand-purple focus:ring-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-xs sm:text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-users text-cyan-600"></i> Adaptación e Integración Social
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Convivencia con compañeros, comunicación y pertenencia.</div>
+                            </div>
+                        </label>
+
+                        <label onclick="selectStepOption(1, 'vocacional', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step1_q" value="vocacional" class="mt-1 text-brand-purple focus:ring-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-xs sm:text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-compass text-amber-500"></i> Orientación Vocacional y Futuro
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Dudas sobre la carrera, metas académicas o decisiones.</div>
+                            </div>
+                        </label>
+                    </div>
                 </div>
-                <button onclick="openCrisisModal()" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-6 py-3 rounded-2xl text-xs sm:text-sm transition flex-shrink-0 flex items-center gap-2 shadow-lg">
-                    <i class="fa-solid fa-phone-volume"></i> Ver Teléfonos de Emergencia
-                </button>
+
+                <!-- STEP 2 -->
+                <div id="wizard-step-2" class="wizard-step hidden space-y-6">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold text-brand-purple uppercase tracking-wider">Paso 2</span>
+                        <h3 class="font-heading text-xl font-bold text-slate-800">
+                            ¿Qué tipo de apoyo o formato te genera mayor confianza?
+                        </h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label onclick="selectStepOption(2, 'autoguia', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step2_q" value="autoguia" class="mt-1 text-brand-purple" checked>
+                            <div>
+                                <div class="font-bold text-slate-800 text-xs sm:text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-book-open text-indigo-600"></i> Contenido Autoguiado Digital
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Lectura individual de guías, ejercicios de respiración e infografías.</div>
+                            </div>
+                        </label>
+
+                        <label onclick="selectStepOption(2, 'talleres', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step2_q" value="talleres" class="mt-1 text-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-xs sm:text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-people-group text-teal-600"></i> Espacios Grupales de Pares
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Talleres e intercambio de vivencias entre estudiantes.</div>
+                            </div>
+                        </label>
+
+                        <label onclick="selectStepOption(2, 'individual', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step2_q" value="individual" class="mt-1 text-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-xs sm:text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-user-gear text-purple-600"></i> Orientación Individual Directa
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Conversación confidencial uno a uno con un orientador.</div>
+                            </div>
+                        </label>
+
+                        <label onclick="selectStepOption(2, 'lineas', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex items-start gap-3 bg-white">
+                            <input type="radio" name="step2_q" value="lineas" class="mt-1 text-brand-purple">
+                            <div>
+                                <div class="font-bold text-slate-800 text-xs sm:text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-headset text-pink-600"></i> Contacto Telefónico / Chat Rápido
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">Consultas anónimas inmediatas sin cita previa.</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div id="wizard-step-3" class="wizard-step hidden space-y-6">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold text-brand-purple uppercase tracking-wider">Paso 3</span>
+                        <h3 class="font-heading text-xl font-bold text-slate-800">
+                            ¿Cuál es tu disponibilidad y preferencia de ubicación?
+                        </h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <label onclick="selectStepOption(3, 'online', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex flex-col items-center text-center bg-white">
+                            <input type="radio" name="step3_q" value="online" class="mb-2 text-brand-purple" checked>
+                            <i class="fa-solid fa-laptop text-2xl text-cyan-600 mb-2"></i>
+                            <div class="font-bold text-slate-800 text-xs sm:text-sm">En Línea</div>
+                            <div class="text-xs text-slate-500 mt-1">Flexible, desde cualquier lugar y horario.</div>
+                        </label>
+
+                        <label onclick="selectStepOption(3, 'presencial', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex flex-col items-center text-center bg-white">
+                            <input type="radio" name="step3_q" value="presencial" class="mb-2 text-brand-purple">
+                            <i class="fa-solid fa-building-columns text-2xl text-purple-600 mb-2"></i>
+                            <div class="font-bold text-slate-800 text-xs sm:text-sm">Presencial en Campus</div>
+                            <div class="text-xs text-slate-500 mt-1">Espacios físicos universitarios.</div>
+                        </label>
+
+                        <label onclick="selectStepOption(3, 'hibrido', this)" class="step-option-btn cursor-pointer border border-slate-200 rounded-2xl p-4 hover:border-brand-purple hover:bg-purple-50/50 transition flex flex-col items-center text-center bg-white">
+                            <input type="radio" name="step3_q" value="hibrido" class="mb-2 text-brand-purple">
+                            <i class="fa-solid fa-arrows-split-up-and-left text-2xl text-pink-600 mb-2"></i>
+                            <div class="font-bold text-slate-800 text-xs sm:text-sm">Indiferente / Ambos</div>
+                            <div class="text-xs text-slate-500 mt-1">Cualquier formato que brinde respuesta pronta.</div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- STEP 4: SUMMARY & ROADMAP -->
+                <div id="wizard-step-4" class="wizard-step hidden space-y-6">
+                    <div class="bg-gradient-to-r from-purple-50 via-indigo-50 to-cyan-50 border border-purple-200 rounded-2xl p-6 text-slate-800 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-brand-purple text-white flex items-center justify-center text-lg font-bold">
+                                <i class="fa-solid fa-flag-checkered"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading text-lg font-bold text-brand-navy">
+                                    Tu Ruta de Orientación Sugerida
+                                </h3>
+                                <p class="text-xs text-slate-500">Resumen no evaluativo basado exclusivamente en tus selecciones:</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs">
+                            <div class="bg-white/90 p-3 rounded-xl border border-slate-200">
+                                <span class="text-slate-400 block font-semibold">Inquietud principal:</span>
+                                <span id="summary-area" class="font-bold text-brand-purple text-xs sm:text-sm">Cargando...</span>
+                            </div>
+                            <div class="bg-white/90 p-3 rounded-xl border border-slate-200">
+                                <span class="text-slate-400 block font-semibold">Formato preferido:</span>
+                                <span id="summary-format" class="font-bold text-brand-cyan text-xs sm:text-sm">Cargando...</span>
+                            </div>
+                            <div class="bg-white/90 p-3 rounded-xl border border-slate-200">
+                                <span class="text-slate-400 block font-semibold">Modalidad:</span>
+                                <span id="summary-mode" class="font-bold text-brand-pink text-xs sm:text-sm">Cargando...</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 pt-2">
+                            <h4 class="font-bold text-xs sm:text-sm text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-lightbulb text-amber-500"></i> Recomendaciones para tus siguientes pasos:
+                            </h4>
+                            <ul id="summary-recommendations" class="list-disc list-inside text-xs text-slate-700 space-y-1.5 leading-relaxed pl-1">
+                                <!-- Dynamic JS Recommendations -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <button onclick="switchTab('rutaconfia')" class="bg-brand-navy hover:bg-slate-900 text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-2 shadow">
+                            <i class="fa-solid fa-route"></i> Ver Opciones en Ruta Confía
+                        </button>
+                        <button onclick="switchTab('entrenosotros')" class="bg-brand-purple hover:bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-2 shadow">
+                            <i class="fa-solid fa-hands-holding-child"></i> Ir a Módulo Entre Nosotros
+                        </button>
+                        <button onclick="resetWizard()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm transition">
+                            <i class="fa-solid fa-rotate-right"></i> Reiniciar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Wizard Footer Controls -->
+                <div id="wizard-controls" class="flex justify-between items-center pt-6 border-t border-slate-200 mt-6">
+                    <button id="btn-prev-step" onclick="changeStep(-1)" class="invisible bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-xl text-xs sm:text-sm transition flex items-center gap-2">
+                        <i class="fa-solid fa-chevron-left"></i> Anterior
+                    </button>
+                    <button id="btn-next-step" onclick="changeStep(1)" class="bg-brand-purple hover:bg-purple-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-2 shadow-md">
+                        Siguiente <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
             </div>
+
         </section>
 
         <!-- ========================================== -->
-        <!-- VIEW 5: OPINIÓN DEL USUARIO (PANTALLA 5)   -->
+        <!-- PANTALLA 5: OPINIÓN DEL USUARIO            -->
         <!-- ========================================== -->
-        <section id="view-opinion" class="hidden space-y-8 max-w-2xl mx-auto">
+        <section id="view-opinion" class="hidden space-y-10 max-w-3xl mx-auto">
 
-            <!-- Title & Subtitle -->
             <div class="text-center space-y-2">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-100 text-brand-pink text-xs font-bold uppercase tracking-wider">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mint-100 text-brand-mint text-xs font-bold uppercase tracking-wider">
                     <i class="fa-solid fa-comment-dots"></i> Pantalla 5
                 </div>
                 <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-navy">
                     Opinión del Usuario
                 </h2>
-                <p class="text-slate-600 text-sm">
-                    Cuestionario breve para valorar claridad, facilidad de navegación y utilidad percibida de la plataforma.
+                <p class="text-slate-600 text-xs sm:text-sm">
+                    Valora la claridad, facilidad de navegación y utilidad percibida de la plataforma.
                 </p>
             </div>
 
-            <!-- Feedback Multi-step Form Card (Modeled after Mockup Image) -->
+            <!-- Feedback Multi-step Card (Modeled after provided mockup image) -->
             <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200/90 relative">
                 
-                <!-- Mockup Progress Indicator (1 - 2) -->
+                <!-- Progress Indicator (1 - 2) -->
                 <div class="flex justify-center items-center gap-4 mb-8">
                     <div id="fb-indicator-1" class="w-8 h-8 rounded-full border-2 border-brand-purple bg-brand-purple text-white font-bold text-sm flex items-center justify-center transition-all">
                         1
@@ -755,22 +922,20 @@
                     </div>
                 </div>
 
-                <!-- Form Container -->
                 <form id="feedback-form" onsubmit="handleFeedbackSubmit(event)">
 
                     <!-- STEP 1: RATING -->
                     <div id="fb-step-1" class="space-y-6">
                         
-                        <!-- Main Rating Header -->
                         <div class="text-center space-y-1">
                             <h3 class="font-heading text-xl font-bold text-slate-800">
-                                ¿Cómo calificarías tu experiencia general?
+                                ¿Cómo calificarías la plataforma general?
                             </h3>
-                            <p class="text-xs text-slate-500">Selecciona las estrellas para valorar la plataforma *</p>
+                            <p class="text-xs text-slate-500">Haz clic en las estrellas para seleccionar tu calificación *</p>
                         </div>
 
                         <!-- Star Rating Picker -->
-                        <div class="bg-slate-50/80 border border-slate-200 rounded-2xl p-6 text-center space-y-3">
+                        <div class="bg-slate-50/90 border border-slate-200 rounded-2xl p-6 text-center space-y-3">
                             <div class="star-rating flex justify-center gap-3 text-3xl text-slate-300 cursor-pointer">
                                 <i class="fa-solid fa-star" data-rating="1" onclick="setRating(1)"></i>
                                 <i class="fa-solid fa-star" data-rating="2" onclick="setRating(2)"></i>
@@ -785,107 +950,69 @@
                             </div>
                         </div>
 
-                        <!-- Specific Criteria Ratings -->
-                        <div class="space-y-4 pt-2">
-                            <h4 class="font-bold text-xs uppercase tracking-wider text-slate-500">Valoración por Aspectos:</h4>
+                        <!-- Detailed criteria -->
+                        <div class="space-y-3 pt-2">
+                            <h4 class="font-bold text-xs uppercase tracking-wider text-slate-500">Valoración por aspectos:</h4>
                             
-                            <div class="space-y-3">
-                                <div class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-200 text-xs">
-                                    <span class="font-medium text-slate-700">Claridad de la información</span>
-                                    <div class="flex gap-1 text-amber-400 text-sm">
-                                        <select id="rate-clarity" class="bg-slate-100 border border-slate-300 rounded px-2 py-1 text-slate-700 font-semibold text-xs">
-                                            <option value="5">5 - Excelente</option>
-                                            <option value="4" selected>4 - Buena</option>
-                                            <option value="3">3 - Regular</option>
-                                            <option value="2">2 - Confusa</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-200 text-xs">
+                                <span class="font-medium text-slate-700">Claridad de la información</span>
+                                <select id="rate-clarity" class="bg-slate-100 border border-slate-300 rounded px-2 py-1 text-slate-700 font-semibold text-xs">
+                                    <option value="5" selected>5 - Excelente</option>
+                                    <option value="4">4 - Buena</option>
+                                    <option value="3">3 - Regular</option>
+                                    <option value="2">2 - Confusa</option>
+                                </select>
+                            </div>
 
-                                <div class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-200 text-xs">
-                                    <span class="font-medium text-slate-700">Facilidad de navegación</span>
-                                    <div class="flex gap-1 text-amber-400 text-sm">
-                                        <select id="rate-nav" class="bg-slate-100 border border-slate-300 rounded px-2 py-1 text-slate-700 font-semibold text-xs">
-                                            <option value="5" selected>5 - Muy fácil</option>
-                                            <option value="4">4 - Fácil</option>
-                                            <option value="3">3 - Aceptable</option>
-                                            <option value="2">2 - Difícil</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-200 text-xs">
+                                <span class="font-medium text-slate-700">Facilidad de navegación</span>
+                                <select id="rate-nav" class="bg-slate-100 border border-slate-300 rounded px-2 py-1 text-slate-700 font-semibold text-xs">
+                                    <option value="5" selected>5 - Muy fácil</option>
+                                    <option value="4">4 - Fácil</option>
+                                    <option value="3">3 - Regular</option>
+                                </select>
+                            </div>
 
-                                <div class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-200 text-xs">
-                                    <span class="font-medium text-slate-700">Utilidad percibida de los módulos</span>
-                                    <div class="flex gap-1 text-amber-400 text-sm">
-                                        <select id="rate-utility" class="bg-slate-100 border border-slate-300 rounded px-2 py-1 text-slate-700 font-semibold text-xs">
-                                            <option value="5" selected>5 - Muy útil</option>
-                                            <option value="4">4 - Útil</option>
-                                            <option value="3">3 - Moderada</option>
-                                            <option value="2">2 - Poco útil</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-200 text-xs">
+                                <span class="font-medium text-slate-700">Utilidad percibida de los módulos</span>
+                                <select id="rate-utility" class="bg-slate-100 border border-slate-300 rounded px-2 py-1 text-slate-700 font-semibold text-xs">
+                                    <option value="5" selected>5 - Muy útil</option>
+                                    <option value="4">4 - Útil</option>
+                                    <option value="3">3 - Moderada</option>
+                                </select>
                             </div>
                         </div>
 
-                        <!-- Step 1 Button -->
                         <div class="flex justify-end pt-4">
-                            <button type="button" onclick="goFeedbackStep(2)" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-2xl text-sm transition flex items-center gap-2 shadow-lg shadow-blue-200">
+                            <button type="button" onclick="goFeedbackStep(2)" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-2xl text-xs sm:text-sm transition flex items-center gap-2 shadow-lg shadow-blue-200">
                                 Siguiente <i class="fa-solid fa-arrow-right"></i>
                             </button>
                         </div>
 
                     </div>
 
-                    <!-- STEP 2: COMMENTS & SUGGESTIONS -->
+                    <!-- STEP 2: COMMENTS -->
                     <div id="fb-step-2" class="hidden space-y-6">
 
                         <div class="space-y-1">
                             <h3 class="font-heading text-xl font-bold text-slate-800">
                                 Cuéntanos más sobre tu experiencia
                             </h3>
-                            <p class="text-xs text-slate-500">Tus comentarios nos permiten adaptar la plataforma a lo que realmente necesitas.</p>
+                            <p class="text-xs text-slate-500">Tus comentarios permiten adaptar la plataforma a tus necesidades reales.</p>
                         </div>
 
-                        <!-- Highlights Checkboxes -->
-                        <div class="space-y-2">
-                            <label class="block text-xs font-bold text-slate-700">Aspectos que consideras más valiosos:</label>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                                <label class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100">
-                                    <input type="checkbox" value="sin_diagnostico" class="rounded text-brand-purple focus:ring-brand-purple" checked>
-                                    <span>Enfoque sin diagnósticos ético</span>
-                                </label>
-                                <label class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100">
-                                    <input type="checkbox" value="claridad" class="rounded text-brand-purple focus:ring-brand-purple" checked>
-                                    <span>Claridad en los pasos (Módulo 3)</span>
-                                </label>
-                                <label class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100">
-                                    <input type="checkbox" value="comparador" class="rounded text-brand-purple focus:ring-brand-purple">
-                                    <span>Comparador de opciones</span>
-                                </label>
-                                <label class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100">
-                                    <input type="checkbox" value="diseno" class="rounded text-brand-purple focus:ring-brand-purple">
-                                    <span>Diseño y amigabilidad</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Open Feedback Textarea (Matching UI mockup) -->
                         <div class="space-y-2">
                             <label for="fb-comments" class="block text-xs font-bold text-slate-700">
-                                Sugerencias de mejora o comentarios adicionales:
+                                Comentarios o sugerencias de mejora:
                             </label>
-                            <div class="relative">
-                                <textarea id="fb-comments" rows="4" placeholder="Valoro mucho la variedad de alternativas presentadas y la claridad del lenguaje sin tecnicismos..." class="w-full border border-purple-300 focus:border-brand-purple focus:ring-2 focus:ring-purple-200 rounded-2xl p-4 text-xs sm:text-sm text-slate-800 placeholder-slate-400 outline-none transition"></textarea>
-                            </div>
+                            <textarea id="fb-comments" rows="4" placeholder="Aprecio la claridad de los filtros y que no se requiera registro obligatorio para revisar las opciones..." class="w-full border border-purple-300 focus:border-brand-purple focus:ring-2 focus:ring-purple-200 rounded-2xl p-4 text-xs sm:text-sm text-slate-800 placeholder-slate-400 outline-none transition"></textarea>
                         </div>
 
-                        <!-- Step 2 Controls -->
                         <div class="flex justify-between items-center pt-4">
                             <button type="button" onclick="goFeedbackStep(1)" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-4 py-2.5 rounded-2xl text-xs sm:text-sm transition flex items-center gap-2">
                                 <i class="fa-solid fa-arrow-left"></i> Regresar
                             </button>
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-7 py-3 rounded-2xl text-sm transition flex items-center gap-2 shadow-lg shadow-blue-200">
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-7 py-3 rounded-2xl text-xs sm:text-sm transition flex items-center gap-2 shadow-lg shadow-blue-200">
                                 Enviar Opinión <i class="fa-solid fa-paper-plane"></i>
                             </button>
                         </div>
@@ -894,6 +1021,16 @@
 
                 </form>
 
+            </div>
+
+            <!-- Saved Community Feedback List -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-4">
+                <h3 class="font-heading text-lg font-bold text-brand-navy flex items-center gap-2">
+                    <i class="fa-solid fa-comments text-brand-purple"></i> Valoraciones recientes de la comunidad
+                </h3>
+                <div id="community-feedback-list" class="space-y-3">
+                    <!-- Dynamic Rendered Feed -->
+                </div>
             </div>
 
         </section>
@@ -905,38 +1042,36 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 
-                <!-- Brand Info -->
                 <div class="space-y-3 md:col-span-2">
                     <div class="flex items-center gap-2">
                         <span class="font-heading font-extrabold text-2xl tracking-tight text-white">
                             Punto<span class="text-brand-purple">y</span>aparte
                         </span>
+                        <span class="text-xs text-brand-pink font-semibold">Entre Nosotros</span>
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
-                        Tu bienestar también merece un espacio. Plataforma psicoeducativa de orientación estudiantil diseñada para el discernimiento libre y la búsqueda de alternativas personalizadas.
+                        Plataforma digital de orientación y conexión con recursos de bienestar emocional para jóvenes universitarios.
                     </p>
                     <p class="text-[11px] text-slate-500 font-mono">
-                        © 2026 Punto y Aparte. Todos los derechos reservados.
+                        © 2026 Punto y Aparte. Proyecto de Investigación y Acción Estudiantil.
                     </p>
                 </div>
 
-                <!-- Navigation -->
                 <div class="space-y-2">
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-300">Navegación</h4>
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-300">Pantallas / Módulos</h4>
                     <ul class="text-xs text-slate-400 space-y-2">
-                        <li><a href="#" onclick="switchTab('inicio'); return false;" class="hover:text-white transition">Inicio</a></li>
-                        <li><a href="#" onclick="switchTab('empezar'); return false;" class="hover:text-white transition">¿Por Dónde Empiezo?</a></li>
-                        <li><a href="#" onclick="switchTab('comparar'); return false;" class="hover:text-white transition">Comparar Alternativas</a></li>
-                        <li><a href="#" onclick="switchTab('recursos'); return false;" class="hover:text-white transition">Directorio de Recursos</a></li>
-                        <li><a href="#" onclick="switchTab('opinion'); return false;" class="hover:text-white transition">Opinión (Pantalla 5)</a></li>
+                        <li><a href="#" onclick="switchTab('inicio'); return false;" class="hover:text-white transition">1. Inicio</a></li>
+                        <li><a href="#" onclick="switchTab('entrenosotros'); return false;" class="hover:text-white transition">2. Entre Nosotros</a></li>
+                        <li><a href="#" onclick="switchTab('rutaconfia'); return false;" class="hover:text-white transition">3. Ruta Confía</a></li>
+                        <li><a href="#" onclick="switchTab('empezar'); return false;" class="hover:text-white transition">4. ¿Por Dónde Empiezo?</a></li>
+                        <li><a href="#" onclick="switchTab('opinion'); return false;" class="hover:text-white transition">5. Opinión del Usuario</a></li>
                     </ul>
                 </div>
 
-                <!-- Legal Disclaimer & Ethics -->
                 <div class="space-y-2">
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-300">Aviso Ético</h4>
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-300">Aviso ético</h4>
                     <p class="text-[11px] text-slate-400 leading-relaxed">
-                        No somos un servicio médico ni hospitalario. Si estás experimentando una emergencia médica o de salud mental grave, acude al centro de salud más cercano.
+                        Este prototipo es orientativo e informativo. No constituye atención clínica, psicoterapia inmediata ni servicio de urgencias médicas.
                     </p>
                 </div>
 
@@ -945,11 +1080,9 @@
     </footer>
 
 
-    <!-- ========================================== -->
-    <!-- MODALS & OVERLAYS                          -->
-    <!-- ========================================== -->
+    <!-- MODALS -->
 
-    <!-- Modal 1: Side-by-Side Comparison Modal -->
+    <!-- Modal 1: Side-by-Side Comparison -->
     <div id="compare-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6 shadow-2xl relative">
             <button onclick="closeCompareModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 p-2 rounded-full text-xl">
@@ -958,13 +1091,13 @@
 
             <div class="space-y-1">
                 <h3 class="font-heading text-xl font-bold text-brand-navy flex items-center gap-2">
-                    <i class="fa-solid fa-scale-balanced text-brand-cyan"></i> Comparativa de Opciones Seleccionadas
+                    <i class="fa-solid fa-columns text-brand-cyan"></i> Comparativa Lado a Lado de Alternativas
                 </h3>
-                <p class="text-xs text-slate-500">Tabla comparativa para ayudarte a decidir el mejor formato para ti.</p>
+                <p class="text-xs text-slate-500">Evalúa las opciones seleccionadas según tus posibilidades de tiempo y costo.</p>
             </div>
 
             <div id="compare-modal-content" class="overflow-x-auto">
-                <!-- Dynamic Comparison Table JS -->
+                <!-- Dynamic Comparison Table -->
             </div>
 
             <div class="flex justify-end pt-4 border-t border-slate-200">
@@ -975,7 +1108,7 @@
         </div>
     </div>
 
-    <!-- Modal 2: Emergency Crisis Lines -->
+    <!-- Modal 2: Crisis Hotline Numbers -->
     <div id="crisis-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl relative border-t-8 border-t-rose-600">
             <button onclick="closeCrisisModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 p-2 rounded-full text-xl">
@@ -990,7 +1123,7 @@
                     Líneas de Atención Gratuita 24/7
                 </h3>
                 <p class="text-xs text-slate-600">
-                    Si necesitas ser escuchado inmediatamente por un especialista de contención en crisis:
+                    Si te encuentras en una situación de urgencia o desbordamiento emocional inmediato:
                 </p>
             </div>
 
@@ -998,7 +1131,7 @@
                 <div class="p-4 rounded-2xl bg-rose-50 border border-rose-200 flex justify-between items-center">
                     <div>
                         <div class="font-bold text-rose-900">Línea de la Vida (Nacional)</div>
-                        <div class="text-slate-500">Atención emocional y adicciones 24/7</div>
+                        <div class="text-slate-500">Atención emocional y contención 24/7</div>
                     </div>
                     <a href="tel:8009112000" class="bg-rose-600 text-white font-bold px-3 py-2 rounded-xl hover:bg-rose-700 text-xs transition">
                         800 911 2000
@@ -1007,90 +1140,51 @@
 
                 <div class="p-4 rounded-2xl bg-purple-50 border border-purple-200 flex justify-between items-center">
                     <div>
-                        <div class="font-bold text-purple-900">Orientación Psicológica UNAM / Universitaria</div>
-                        <div class="text-slate-500">Atención telefónica estudiante</div>
+                        <div class="font-bold text-purple-900">Orientación Telefónica Universitaria</div>
+                        <div class="text-slate-500">Atención a la comunidad estudiante</div>
                     </div>
                     <a href="tel:5550250855" class="bg-purple-600 text-white font-bold px-3 py-2 rounded-xl hover:bg-purple-700 text-xs transition">
                         55 5025 0855
                     </a>
                 </div>
-
-                <div class="p-4 rounded-2xl bg-cyan-50 border border-cyan-200 flex justify-between items-center">
-                    <div>
-                        <div class="font-bold text-cyan-900">SAPTEL (Consejo Psicológico)</div>
-                        <div class="text-slate-500">Servicio de apoyo psicológico por teléfono</div>
-                    </div>
-                    <a href="tel:5552598121" class="bg-cyan-600 text-white font-bold px-3 py-2 rounded-xl hover:bg-cyan-700 text-xs transition">
-                        55 5259 8121
-                    </a>
-                </div>
             </div>
 
             <p class="text-[11px] text-center text-slate-400">
-                Llamadas gratuitas, confidenciales y sin costo desde cualquier teléfono.
+                Llamadas confidenciales y gratuitas desde cualquier teléfono celular o fijo.
             </p>
         </div>
     </div>
 
-    <!-- Modal 3: Guide Detail View Modal -->
-    <div id="guide-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-4 shadow-2xl relative">
-            <button onclick="closeGuideModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 p-2 rounded-full text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <h3 id="guide-modal-title" class="font-heading text-xl font-bold text-brand-navy">
-                Título Guía
-            </h3>
-            <p id="guide-modal-body" class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Contenido detallado...
-            </p>
-            <div class="pt-4 flex justify-end">
-                <button onclick="closeGuideModal()" class="bg-brand-purple text-white font-bold px-5 py-2 rounded-xl text-xs">
-                    Entendido
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 4: Feedback Submission Success Confirmation -->
-    <div id="feedback-success-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center space-y-5 shadow-2xl">
-            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
-                <i class="fa-solid fa-check"></i>
-            </div>
-            <h3 class="font-heading text-2xl font-bold text-slate-900">
-                ¡Gracias por tus comentarios!
-            </h3>
-            <p class="text-xs text-slate-600 leading-relaxed">
-                Hemos registrado tu valoración. Tus sugerencias son fundamentales para mantener a <strong>Punto y Aparte</strong> como un espacio claro, accesible y útil para toda la comunidad estudiantil.
-            </p>
-            <button onclick="closeFeedbackSuccessModal()" class="bg-brand-navy hover:bg-slate-900 text-white font-bold px-6 py-3 rounded-2xl text-xs transition w-full shadow-md">
-                Volver al Inicio
+    <!-- Modal 3: Alert Custom Dialog -->
+    <div id="alert-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl">
+            <h3 id="alert-title" class="font-heading text-lg font-bold text-brand-navy">Mensaje</h3>
+            <p id="alert-body" class="text-xs text-slate-600 leading-relaxed">Detalle del mensaje...</p>
+            <button onclick="closeAlertModal()" class="bg-brand-purple text-white font-bold px-6 py-2 rounded-xl text-xs">
+                Entendido
             </button>
         </div>
     </div>
 
 
-    <!-- ========================================== -->
-    <!-- JAVASCRIPT LOGIC                           -->
-    <!-- ========================================== -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // DATA MODEL: Support Alternatives
+        // DIRECTORY DATA (Ruta Confía)
         const supportOptionsData = [
             {
                 id: 'opt1',
                 title: 'Tutorías de Pares Universitarios',
-                type: 'autoni',
+                type: 'grupal',
                 format: 'grupal',
                 modality: 'presencial',
                 cost: 'gratis',
                 costLabel: 'Gratuito',
                 icon: 'fa-user-group',
                 badgeColor: 'bg-emerald-100 text-emerald-800',
-                desc: 'Grupos de estudio organizados por alumnos de semestres avanzados para repasar materias complejas y compartir metodologías de estudio.',
+                desc: 'Grupos de estudio organizados por alumnos de semestres avanzados para repasar materias y compartir metodologías.',
                 privacy: 'Alta (Entre estudiantes)',
-                time: 'Semanal / 2 horas',
-                idealFor: 'Dificultades académicas puntuales y búsqueda de integración universitaria.'
+                time: 'Semanal / Horarios de clase',
+                idealFor: 'Estrés por materias complejas e integración entre pares.'
             },
             {
                 id: 'opt2',
@@ -1102,10 +1196,10 @@
                 costLabel: 'Gratuito',
                 icon: 'fa-user-check',
                 badgeColor: 'bg-purple-100 text-purple-800',
-                desc: 'Sesiones breves con orientadores universitarios para estructurar técnicas de estudio, hábitos de organización y gestión del tiempo.',
+                desc: 'Sesiones de orientación con tutores para estructurar métodos de estudio, hábitos de organización y gestión del tiempo.',
                 privacy: 'Confidencial Institucional',
                 time: 'Cita previa / 45 min',
-                idealFor: 'Desorganización académica recurrente y bloqueos de estudio.'
+                idealFor: 'Desorganización académica recurrente y bloqueos.'
             },
             {
                 id: 'opt3',
@@ -1117,14 +1211,14 @@
                 costLabel: 'Gratuito',
                 icon: 'fa-laptop-code',
                 badgeColor: 'bg-cyan-100 text-cyan-800',
-                desc: 'Webinars interactivos semanales sobre técnicas de respiración, mindfulness aplicado y manejo de la presión previa a exámenes.',
-                privacy: 'Participación abierta / Cámara opcional',
-                time: 'En vivo semanal (1 hora)',
+                desc: 'Sesiones web semanales sobre respiración, mindfulness y manejo de tensión previo a evaluaciones.',
+                privacy: 'Abierta / Cámara opcional',
+                time: 'Sábados (1 hora)',
                 idealFor: 'Estudiantes con horarios apretados que prefieren formato remoto.'
             },
             {
                 id: 'opt4',
-                title: 'Plataforma de Autoayuda & Módulos Digitales',
+                title: 'Módulos y Auto-guías Digitales',
                 type: 'autoni',
                 format: 'autoni',
                 modality: 'online',
@@ -1132,29 +1226,29 @@
                 costLabel: 'Gratuito',
                 icon: 'fa-book-open-reader',
                 badgeColor: 'bg-indigo-100 text-indigo-800',
-                desc: 'Recursos interactivos descargables, infografías y bitácoras personales para autorregular hábitos sin necesidad de agenda previa.',
+                desc: 'Recursos interactivos descargables y bitácoras para autorregular hábitos sin necesidad de agenda previa.',
                 privacy: '100% Anónimo',
                 time: 'Disponible 24/7',
-                idealFor: 'Quienes prefieren reflexionar de manera totalmente autónoma.'
+                idealFor: 'Revisión autónoma a ritmo personal.'
             },
             {
                 id: 'opt5',
-                title: 'Clínica de Acompañamiento Psicológico Institucional',
+                title: 'Centro de Acompañamiento Emocional',
                 type: 'individual',
                 format: 'individual',
                 modality: 'presencial',
                 cost: 'bajo',
-                costLabel: 'Costo Simbólico',
+                costLabel: 'Cuota Simbólica',
                 icon: 'fa-hand-holding-heart',
                 badgeColor: 'bg-pink-100 text-pink-800',
-                desc: 'Servicio de apoyo emocional breve para estudiantes impartido por profesionales en centros especializados.',
+                desc: 'Espacio de orientación individual impartido por profesionales en facultades de la universidad.',
                 privacy: 'Confidencialidad Profesional',
-                time: 'Sesiones programadas',
-                idealFor: 'Malestar emocional constante o necesidad de contención estructurada.'
+                time: 'Lunes a Viernes (8:00 - 18:00)',
+                idealFor: 'Acompañamiento estructurado frente a desbordamiento personal.'
             },
             {
                 id: 'opt6',
-                title: 'Línea de Escucha Activa & Chat Estudiantil',
+                title: 'Chat de Orientación Estudiantil',
                 type: 'individual',
                 format: 'individual',
                 modality: 'online',
@@ -1162,34 +1256,49 @@
                 costLabel: 'Gratuito',
                 icon: 'fa-headset',
                 badgeColor: 'bg-teal-100 text-teal-800',
-                desc: 'Chat anónimo en tiempo real con consejeros para desahogo emocional y orientación inmediata en días de crisis lectiva.',
-                privacy: 'Anonimato garantizado',
-                time: 'Respuesta inmediata',
-                idealFor: 'Momentos de abrumación o necesidad inmediata de desahogo.'
+                desc: 'Atención en tiempo real con consejeros para desahogo emocional y orientación inmediata.',
+                privacy: 'Anónimo',
+                time: 'Atención inmediata',
+                idealFor: 'Momentos de abrumación o necesidad de ser escuchado.'
             }
         ];
 
-        // STATE MANAGEMENT
+        // MOCK INITIAL COMMUNITY FEEDBACK
+        const initialFeedbacks = [
+            {
+                rating: 5,
+                clarity: '5/5',
+                comment: 'Me sirvió mucho que las opciones de apoyo muestren si son gratuitas y en qué horarios atienden. Todo es muy claro.',
+                date: 'Hace 2 días'
+            },
+            {
+                rating: 5,
+                clarity: '5/5',
+                comment: 'El módulo "¿Por dónde empiezo?" me ayudó a ordenar mis ideas antes de buscar hablar con mi tutor.',
+                date: 'Ayer'
+            }
+        ];
+
+        // STATE VARIABLES
         let currentTab = 'inicio';
         let wizardCurrentStep = 1;
-        let wizardAnswers = {
-            step1: 'organizacion',
-            step2: 'autoguia',
-            step3: 'online'
-        };
+        let wizardAnswers = { step1: 'organizacion', step2: 'autoguia', step3: 'online' };
         let selectedOptionsForCompare = [];
         let currentRating = 0;
+        let breathingTimer = null;
 
         // INITIALIZATION
         window.onload = function() {
             renderSupportOptions();
             updateCompareUI();
+            loadPrivateVent();
+            renderCommunityFeedback();
         };
 
         // NAVIGATION TAB SWITCHER
         function switchTab(tabId) {
             currentTab = tabId;
-            const views = ['inicio', 'empezar', 'comparar', 'recursos', 'opinion'];
+            const views = ['inicio', 'entrenosotros', 'rutaconfia', 'empezar', 'opinion'];
             
             views.forEach(v => {
                 const el = document.getElementById(`view-${v}`);
@@ -1214,123 +1323,65 @@
         }
 
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
         // ==========================================
-        // MÓDULO 3: ¿POR DÓNDE EMPIEZO? (WIZARD)
+        // MÓDULO 1: BREATHING & PRIVATE VENT JOURNAL
         // ==========================================
-        function selectStepOption(stepNum, val, element) {
-            wizardAnswers[`step${stepNum}`] = val;
+        function startBreathingExercise() {
+            const circle = document.getElementById('breathing-circle');
+            const text = document.getElementById('breathing-text');
             
-            // Highlight styling
-            const siblings = element.parentElement.querySelectorAll('.step-option-btn');
-            siblings.forEach(s => {
-                s.classList.remove('border-brand-purple', 'bg-purple-50/80', 'ring-2', 'ring-purple-200');
-            });
-            element.classList.add('border-brand-purple', 'bg-purple-50/80', 'ring-2', 'ring-purple-200');
+            circle.classList.add('animate-breathing');
+            let cycle = 0;
+
+            const updateText = () => {
+                const step = cycle % 3;
+                if (step === 0) text.innerText = "Inhala (4s)";
+                else if (step === 1) text.innerText = "Mantén (4s)";
+                else text.innerText = "Exhala (4s)";
+                cycle++;
+            };
+
+            updateText();
+            if (breathingTimer) clearInterval(breathingTimer);
+            breathingTimer = setInterval(updateText, 3300);
         }
 
-        function changeStep(delta) {
-            const newStep = wizardCurrentStep + delta;
-            if (newStep < 1 || newStep > 4) return;
+        function stopBreathingExercise() {
+            const circle = document.getElementById('breathing-circle');
+            const text = document.getElementById('breathing-text');
+            circle.classList.remove('animate-breathing');
+            text.innerText = "Listo";
+            if (breathingTimer) clearInterval(breathingTimer);
+        }
 
-            // Hide current
-            document.getElementById(`wizard-step-${wizardCurrentStep}`).classList.add('hidden');
-            wizardCurrentStep = newStep;
-
-            // Show new
-            document.getElementById(`wizard-step-${wizardCurrentStep}`).classList.remove('hidden');
-
-            // Update Progress Header
-            const labels = [
-                'Paso 1 de 4: Área Principal',
-                'Paso 2 de 4: Formato de Preferencia',
-                'Paso 3 de 4: Disponibilidad y Modalidad',
-                'Paso 4 de 4: Tu Ruta Sugerida'
-            ];
-            const percents = ['25%', '50%', '75%', '100%'];
-            const barWidths = ['w-1/4', 'w-2/4', 'w-3/4', 'w-full'];
-
-            document.getElementById('wizard-step-label').innerText = labels[wizardCurrentStep - 1];
-            document.getElementById('wizard-progress-percent').innerText = `${percents[wizardCurrentStep - 1]} completado`;
-            
-            const progressBar = document.getElementById('wizard-progress-bar');
-            progressBar.className = `bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink h-full transition-all duration-300 ${barWidths[wizardCurrentStep - 1]}`;
-
-            // Controls visibility
-            const btnPrev = document.getElementById('btn-prev-step');
-            const btnNext = document.getElementById('btn-next-step');
-
-            if (wizardCurrentStep === 1) {
-                btnPrev.classList.add('invisible');
-            } else {
-                btnPrev.classList.remove('invisible');
+        function savePrivateVent() {
+            const text = document.getElementById('private-vent-text').value.trim();
+            if (!text) {
+                showAlertModal("Diario Vacío", "Por favor escribe unas palabras antes de guardar tu nota privada.");
+                return;
             }
+            localStorage.setItem('punto_apart_vent_note', text);
+            showAlertModal("Guardado Privado", "Tu nota se guardó en tu dispositivo. Nadie más tiene acceso a esta información.");
+        }
 
-            if (wizardCurrentStep === 4) {
-                btnNext.classList.add('hidden');
-                generateWizardSummary();
-            } else {
-                btnNext.classList.remove('hidden');
+        function loadPrivateVent() {
+            const saved = localStorage.getItem('punto_apart_vent_note');
+            if (saved) {
+                document.getElementById('private-vent-text').value = saved;
             }
         }
 
-        function generateWizardSummary() {
-            const areaNames = {
-                organizacion: 'Organización y Estrés Académico',
-                emocional: 'Emociones y Manejo de Ansiedad',
-                social: 'Relaciones y Adaptación',
-                vocacional: 'Orientación Vocacional'
-            };
-            const formatNames = {
-                autoguia: 'Lecturas y Auto-guías',
-                talleres: 'Talleres Grupales',
-                individual: 'Orientación Individual Directa',
-                lineas: 'Recurso / Línea Inmediata'
-            };
-            const modeNames = {
-                online: '100% En Línea',
-                presencial: 'Presencial en Campus',
-                hibrido: 'Híbrido / Indiferente'
-            };
-
-            document.getElementById('summary-area').innerText = areaNames[wizardAnswers.step1] || 'Organización';
-            document.getElementById('summary-format').innerText = formatNames[wizardAnswers.step2] || 'Auto-guía';
-            document.getElementById('summary-mode').innerText = modeNames[wizardAnswers.step3] || 'En Línea';
-
-            const recsList = document.getElementById('summary-recommendations');
-            recsList.innerHTML = '';
-
-            const recs = [
-                `Explora guías sobre <strong>${areaNames[wizardAnswers.step1]}</strong> en nuestro directorio de recursos informativos.`,
-                `Te sugerimos comparar opciones en modalidad <strong>${modeNames[wizardAnswers.step3]}</strong> para mantener la flexibilidad que buscas.`,
-                `Recuerda que no estás evaluando la gravedad de tu estado; simplemente estás eligiendo herramientas útiles de apoyo.`
-            ];
-
-            recs.forEach(r => {
-                const li = document.createElement('li');
-                li.innerHTML = r;
-                recsList.appendChild(li);
-            });
+        function clearPrivateVent() {
+            localStorage.removeItem('punto_apart_vent_note');
+            document.getElementById('private-vent-text').value = '';
+            showAlertModal("Nota Borrada", "Tu nota privada ha sido eliminada por completo de tu dispositivo.");
         }
-
-        function resetWizard() {
-            document.getElementById(`wizard-step-${wizardCurrentStep}`).classList.add('hidden');
-            wizardCurrentStep = 1;
-            document.getElementById('wizard-step-1').classList.remove('hidden');
-            document.getElementById('btn-next-step').classList.remove('hidden');
-            document.getElementById('btn-prev-step').classList.add('invisible');
-            
-            document.getElementById('wizard-step-label').innerText = 'Paso 1 de 4: Área Principal';
-            document.getElementById('wizard-progress-percent').innerText = '25% completado';
-            document.getElementById('wizard-progress-bar').className = 'bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink h-full transition-all duration-300 w-1/4';
-        }
-
 
         // ==========================================
-        // MÓDULO: COMPARADOR DE ALTERNATIVAS
+        // MÓDULO 2: RUTA CONFÍA (DIRECTORIO)
         // ==========================================
         function renderSupportOptions() {
             const grid = document.getElementById('options-grid');
@@ -1351,7 +1402,7 @@
                 grid.innerHTML = `
                     <div class="col-span-full text-center py-12 text-slate-500 space-y-2">
                         <i class="fa-solid fa-filter-circle-xmark text-3xl text-slate-300"></i>
-                        <p class="text-sm font-medium">No se encontraron alternativas con los filtros seleccionados.</p>
+                        <p class="text-xs sm:text-sm font-medium">No se encontraron opciones con los filtros seleccionados.</p>
                         <button onclick="resetFilters()" class="text-xs text-brand-purple underline font-bold">Restablecer Filtros</button>
                     </div>
                 `;
@@ -1376,7 +1427,7 @@
                         </div>
 
                         <div>
-                            <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                            <h3 class="font-bold text-slate-800 text-sm sm:text-base flex items-center gap-2">
                                 <i class="fa-solid ${item.icon} text-brand-purple"></i> ${item.title}
                             </h3>
                             <p class="text-xs text-slate-500 mt-2 leading-relaxed">
@@ -1402,7 +1453,7 @@
 
                     <div class="pt-4 mt-4 border-t border-slate-100">
                         <button onclick="showOptionDetail('${item.id}')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2 rounded-xl text-xs transition">
-                            Ver detalles de acceso
+                            Ver detalles de contacto
                         </button>
                     </div>
                 `;
@@ -1428,7 +1479,7 @@
                 selectedOptionsForCompare.splice(idx, 1);
             } else {
                 if (selectedOptionsForCompare.length >= 3) {
-                    alertModal("Límite de comparación", "Puedes seleccionar un máximo de 3 opciones para comparar lado a lado.");
+                    showAlertModal("Límite de comparación", "Puedes seleccionar hasta 3 alternativas para comparar lado a lado.");
                     return;
                 }
                 selectedOptionsForCompare.push(id);
@@ -1438,15 +1489,9 @@
         }
 
         function updateCompareUI() {
-            const countEl = document.getElementById('selected-compare-count');
+            document.getElementById('selected-compare-count').innerText = selectedOptionsForCompare.length;
             const btn = document.getElementById('btn-open-compare');
-            countEl.innerText = selectedOptionsForCompare.length;
-
-            if (selectedOptionsForCompare.length >= 2) {
-                btn.disabled = false;
-            } else {
-                btn.disabled = true;
-            }
+            btn.disabled = selectedOptionsForCompare.length < 2;
         }
 
         function openCompareModal() {
@@ -1465,7 +1510,7 @@
                     </thead>
                     <tbody class="divide-y divide-slate-200">
                         <tr>
-                            <td class="p-3 font-semibold text-slate-400">Costo</td>
+                            <td class="p-3 font-semibold text-slate-400">Costo Publicado</td>
                             ${selectedData.map(d => `<td class="p-3 font-bold text-slate-800">${d.costLabel}</td>`).join('')}
                         </tr>
                         <tr>
@@ -1499,24 +1544,94 @@
         function showOptionDetail(id) {
             const item = supportOptionsData.find(o => o.id === id);
             if (!item) return;
-            alertModal(item.title, `${item.desc}\n\nIdeal para: ${item.idealFor}\nModalidad: ${item.modality.toUpperCase()}\nDisponibilidad: ${item.time}`);
+            showAlertModal(item.title, `${item.desc}\n\nIdeal para: ${item.idealFor}\nModalidad: ${item.modality.toUpperCase()}\nDisponibilidad: ${item.time}`);
         }
 
+        // ==========================================
+        // MÓDULO 3: ¿POR DÓNDE EMPIEZO? (WIZARD)
+        // ==========================================
+        function selectStepOption(stepNum, val, element) {
+            wizardAnswers[`step${stepNum}`] = val;
+            const siblings = element.parentElement.querySelectorAll('.step-option-btn');
+            siblings.forEach(s => s.classList.remove('border-brand-purple', 'bg-purple-50/80', 'ring-2', 'ring-purple-200'));
+            element.classList.add('border-brand-purple', 'bg-purple-50/80', 'ring-2', 'ring-purple-200');
+        }
+
+        function changeStep(delta) {
+            const newStep = wizardCurrentStep + delta;
+            if (newStep < 1 || newStep > 4) return;
+
+            document.getElementById(`wizard-step-${wizardCurrentStep}`).classList.add('hidden');
+            wizardCurrentStep = newStep;
+            document.getElementById(`wizard-step-${wizardCurrentStep}`).classList.remove('hidden');
+
+            const labels = ['Paso 1 de 4: Área Principal', 'Paso 2 de 4: Formato de Preferencia', 'Paso 3 de 4: Disponibilidad y Modalidad', 'Paso 4 de 4: Tu Ruta Sugerida'];
+            const percents = ['25%', '50%', '75%', '100%'];
+            const barWidths = ['w-1/4', 'w-2/4', 'w-3/4', 'w-full'];
+
+            document.getElementById('wizard-step-label').innerText = labels[wizardCurrentStep - 1];
+            document.getElementById('wizard-progress-percent').innerText = `${percents[wizardCurrentStep - 1]} completado`;
+            document.getElementById('wizard-progress-bar').className = `bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink h-full transition-all duration-300 ${barWidths[wizardCurrentStep - 1]}`;
+
+            const btnPrev = document.getElementById('btn-prev-step');
+            const btnNext = document.getElementById('btn-next-step');
+
+            if (wizardCurrentStep === 1) btnPrev.classList.add('invisible');
+            else btnPrev.classList.remove('invisible');
+
+            if (wizardCurrentStep === 4) {
+                btnNext.classList.add('hidden');
+                generateWizardSummary();
+            } else {
+                btnNext.classList.remove('hidden');
+            }
+        }
+
+        function generateWizardSummary() {
+            const areaNames = { organizacion: 'Estrés Académico y Tiempos', emocional: 'Manejo de Emociones y Ansiedad', social: 'Adaptación e Integración Social', vocacional: 'Orientación Vocacional' };
+            const formatNames = { autoguia: 'Contenido Autoguiado Digital', talleres: 'Espacios Grupales de Pares', individual: 'Orientación Individual Directa', lineas: 'Contacto Telefónico / Chat Rápido' };
+            const modeNames = { online: 'En Línea', presencial: 'Presencial en Campus', hibrido: 'Indiferente / Ambos' };
+
+            document.getElementById('summary-area').innerText = areaNames[wizardAnswers.step1] || 'General';
+            document.getElementById('summary-format').innerText = formatNames[wizardAnswers.step2] || 'Autoguiado';
+            document.getElementById('summary-mode').innerText = modeNames[wizardAnswers.step3] || 'En Línea';
+
+            const recsList = document.getElementById('summary-recommendations');
+            recsList.innerHTML = '';
+
+            const recs = [
+                `Revisa el módulo <strong>Entre Nosotros</strong> para leer pautas sobre cómo abordar situaciones de <strong>${areaNames[wizardAnswers.step1]}</strong>.`,
+                `En la sección <strong>Ruta Confía</strong>, utiliza los filtros para seleccionar alternativas en formato <strong>${modeNames[wizardAnswers.step3]}</strong>.`,
+                `Recuerda que estas recomendaciones son informativas y no constituyen un diagnóstico clínico ni una prescripción.`
+            ];
+
+            recs.forEach(r => {
+                const li = document.createElement('li');
+                li.innerHTML = r;
+                recsList.appendChild(li);
+            });
+        }
+
+        function resetWizard() {
+            document.getElementById(`wizard-step-${wizardCurrentStep}`).classList.add('hidden');
+            wizardCurrentStep = 1;
+            document.getElementById('wizard-step-1').classList.remove('hidden');
+            document.getElementById('btn-next-step').classList.remove('hidden');
+            document.getElementById('btn-prev-step').classList.add('invisible');
+            
+            document.getElementById('wizard-step-label').innerText = 'Paso 1 de 4: Área Principal';
+            document.getElementById('wizard-progress-percent').innerText = '25% completado';
+            document.getElementById('wizard-progress-bar').className = 'bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink h-full transition-all duration-300 w-1/4';
+        }
 
         // ==========================================
-        // PANTALLA 5: OPINIÓN DEL USUARIO (FEEDBACK)
+        // PANTALLA 5: OPINIÓN DEL USUARIO
         // ==========================================
         function setRating(rating) {
             currentRating = rating;
             const stars = document.querySelectorAll('.star-rating i');
             const displayText = document.getElementById('rating-text-display');
-            const textMap = {
-                1: '1 - Deficiente',
-                2: '2 - Regular',
-                3: '3 - Aceptable',
-                4: '4 - Muy Buena',
-                5: '5 - Excelente'
-            };
+            const textMap = { 1: '1 - Deficiente', 2: '2 - Regular', 3: '3 - Aceptable', 4: '4 - Muy Buena', 5: '5 - Excelente' };
 
             stars.forEach((star, index) => {
                 if (index < rating) {
@@ -1533,21 +1648,19 @@
 
         function goFeedbackStep(step) {
             if (step === 2 && currentRating === 0) {
-                alertModal("Calificación requerida", "Por favor selecciona al menos una calificación con estrellas antes de avanzar.");
+                showAlertModal("Calificación requerida", "Por favor selecciona una calificación con estrellas antes de continuar.");
                 return;
             }
 
             if (step === 1) {
                 document.getElementById('fb-step-1').classList.remove('hidden');
                 document.getElementById('fb-step-2').classList.add('hidden');
-                
                 document.getElementById('fb-indicator-1').className = 'w-8 h-8 rounded-full border-2 border-brand-purple bg-brand-purple text-white font-bold text-sm flex items-center justify-center transition-all';
                 document.getElementById('fb-indicator-2').className = 'w-8 h-8 rounded-full border-2 border-slate-300 text-slate-400 font-bold text-sm flex items-center justify-center transition-all';
                 document.getElementById('fb-line').className = 'w-16 h-0.5 bg-slate-300 transition-all';
             } else {
                 document.getElementById('fb-step-1').classList.add('hidden');
                 document.getElementById('fb-step-2').classList.remove('hidden');
-
                 document.getElementById('fb-indicator-1').className = 'w-8 h-8 rounded-full border-2 border-emerald-500 bg-emerald-500 text-white font-bold text-sm flex items-center justify-center transition-all';
                 document.getElementById('fb-indicator-2').className = 'w-8 h-8 rounded-full border-2 border-brand-purple bg-brand-purple text-white font-bold text-sm flex items-center justify-center transition-all';
                 document.getElementById('fb-line').className = 'w-16 h-0.5 bg-emerald-500 transition-all';
@@ -1556,41 +1669,64 @@
 
         function handleFeedbackSubmit(e) {
             e.preventDefault();
-            document.getElementById('feedback-success-modal').classList.remove('hidden');
-        }
+            const comments = document.getElementById('fb-comments').value.trim() || 'Plataforma muy clara y respetuosa.';
+            
+            const newFeedback = {
+                rating: currentRating,
+                clarity: document.getElementById('rate-clarity').value + '/5',
+                comment: comments,
+                date: 'Hace un momento'
+            };
 
-        function closeFeedbackSuccessModal() {
-            document.getElementById('feedback-success-modal').classList.add('hidden');
-            // Reset feedback form
+            const saved = JSON.parse(localStorage.getItem('punto_apart_feedbacks') || '[]');
+            saved.unshift(newFeedback);
+            localStorage.setItem('punto_apart_feedbacks', JSON.stringify(saved));
+
+            renderCommunityFeedback();
+            showAlertModal("¡Gracias por tu opinión!", "Hemos registrado tu valoración. Tus comentarios nos permiten mantener este espacio claro y accesible.");
+            
+            // Reset form
             document.getElementById('feedback-form').reset();
             setRating(0);
             goFeedbackStep(1);
-            switchTab('inicio');
         }
 
+        function renderCommunityFeedback() {
+            const list = document.getElementById('community-feedback-list');
+            list.innerHTML = '';
+
+            const saved = JSON.parse(localStorage.getItem('punto_apart_feedbacks') || '[]');
+            const allFeedbacks = [...saved, ...initialFeedbacks];
+
+            allFeedbacks.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-4 rounded-2xl border border-slate-200 text-xs space-y-2';
+
+                let starsHtml = '';
+                for (let i = 0; i < 5; i++) {
+                    starsHtml += `<i class="fa-solid fa-star ${i < item.rating ? 'text-amber-400' : 'text-slate-200'}"></i>`;
+                }
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-1 text-sm">${starsHtml}</div>
+                        <span class="text-[10px] text-slate-400 font-medium">${item.date}</span>
+                    </div>
+                    <p class="text-slate-700 leading-relaxed">${item.comment}</p>
+                `;
+                list.appendChild(card);
+            });
+        }
 
         // UTILITY MODALS
-        function openCrisisModal() {
-            document.getElementById('crisis-modal').classList.remove('hidden');
+        function openCrisisModal() { document.getElementById('crisis-modal').classList.remove('hidden'); }
+        function closeCrisisModal() { document.getElementById('crisis-modal').classList.add('hidden'); }
+        function showAlertModal(title, body) {
+            document.getElementById('alert-title').innerText = title;
+            document.getElementById('alert-body').innerText = body;
+            document.getElementById('alert-modal').classList.remove('hidden');
         }
-
-        function closeCrisisModal() {
-            document.getElementById('crisis-modal').classList.add('hidden');
-        }
-
-        function showGuideDetail(title, body) {
-            document.getElementById('guide-modal-title').innerText = title;
-            document.getElementById('guide-modal-body').innerText = body;
-            document.getElementById('guide-modal').classList.remove('hidden');
-        }
-
-        function closeGuideModal() {
-            document.getElementById('guide-modal').classList.add('hidden');
-        }
-
-        function alertModal(title, msg) {
-            showGuideDetail(title, msg);
-        }
+        function closeAlertModal() { document.getElementById('alert-modal').classList.add('hidden'); }
     </script>
 </body>
 </html>
